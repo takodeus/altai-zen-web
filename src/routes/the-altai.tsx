@@ -30,6 +30,22 @@ function TheAltaiPage() {
           className="hairline hairline-draw"
           style={{ position: "absolute", top: "12vh", left: "max(24px, 7vw)", right: "max(24px, 7vw)" }}
         />
+        <svg
+          aria-hidden="true"
+          width="72"
+          height="40"
+          viewBox="0 0 72 40"
+          fill="none"
+          stroke="rgba(42, 45, 46, 0.8)"
+          strokeWidth="1"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ display: "block", marginBottom: "1.75em" }}
+        >
+          <path d="M6 30 L24 18 L36 6 L48 18 L66 30" />
+          <path d="M36 6 C 30 16, 22 24, 12 34" />
+          <path d="M36 6 C 42 16, 50 24, 60 34" />
+        </svg>
         <p className="label-caps" style={{ color: "var(--accent)", margin: 0 }}>
           The Altai
         </p>
