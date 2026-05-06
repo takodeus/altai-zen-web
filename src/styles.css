@@ -13,13 +13,12 @@
 }
 
 :root {
-  --background: #f7f4ed;
-  --foreground: #2a2d2e;
-  --accent: #8b5a3c;
-  --glacial: #506b73;
-  --border: rgba(42, 45, 46, 0.08);
-  --rule: rgba(42, 45, 46, 0.08);
-  --muted-foreground: rgba(42, 45, 46, 0.6);
+  --background: #2a2d2e;
+  --foreground: #f0ead8;
+  --accent: #b07a4f;
+  --border: rgba(240, 234, 216, 0.12);
+  --rule: rgba(240, 234, 216, 0.12);
+  --muted-foreground: rgba(240, 234, 216, 0.55);
   --font-serif: "Cormorant Garamond", "Ivar", Georgia, serif;
   --font-sans: "Hanken Grotesk", "Suisse Intl", system-ui, sans-serif;
   --entrance-duration: 1.8s;
@@ -48,16 +47,16 @@
   }
 
   a:hover {
-    color: var(--glacial);
+    color: rgba(240, 234, 216, 0.75);
   }
 
   a:focus-visible {
-    outline: 1px solid var(--glacial);
+    outline: 1px solid var(--accent);
     outline-offset: 4px;
   }
 
   ::selection {
-    background: rgba(139, 90, 60, 0.18);
+    background: rgba(176, 122, 79, 0.30);
     color: var(--foreground);
   }
 }
@@ -81,11 +80,14 @@
   .hairline {
     height: 1px;
     background-color: var(--foreground);
-    opacity: 0.08;
+    opacity: 0.12;
     width: 100%;
   }
 
   .hairline-draw {
+    height: 2px;
+    background-color: var(--accent);
+    opacity: 1;
     transform: scaleX(1);
     transform-origin: left center;
   }
