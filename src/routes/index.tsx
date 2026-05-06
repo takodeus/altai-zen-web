@@ -91,7 +91,7 @@ function HomePage() {
           style={{
             fontSize: "12px",
             color: "var(--foreground)",
-            opacity: 0.6,
+            opacity: 0.55,
             textAlign: "center",
             margin: 0,
           }}
