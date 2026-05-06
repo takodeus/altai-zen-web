@@ -13,12 +13,12 @@
 }
 
 :root {
-  --background: #2a2d2e;
-  --foreground: #f0ead8;
-  --accent: #b07a4f;
-  --border: rgba(240, 234, 216, 0.12);
-  --rule: rgba(240, 234, 216, 0.12);
-  --muted-foreground: rgba(240, 234, 216, 0.55);
+  --background: #edeef0;
+  --foreground: #1f2326;
+  --accent: #4a6b7a;
+  --border: rgba(31, 35, 38, 0.10);
+  --rule: rgba(31, 35, 38, 0.10);
+  --muted-foreground: rgba(31, 35, 38, 0.55);
   --font-serif: "Cormorant Garamond", "Ivar", Georgia, serif;
   --font-sans: "Hanken Grotesk", "Suisse Intl", system-ui, sans-serif;
   --entrance-duration: 1.8s;
@@ -47,7 +47,7 @@
   }
 
   a:hover {
-    color: rgba(240, 234, 216, 0.75);
+    color: rgba(31, 35, 38, 0.70);
   }
 
   a:focus-visible {
@@ -56,7 +56,7 @@
   }
 
   ::selection {
-    background: rgba(176, 122, 79, 0.30);
+    background: rgba(74, 107, 122, 0.25);
     color: var(--foreground);
   }
 }
@@ -80,7 +80,7 @@
   .hairline {
     height: 1px;
     background-color: var(--foreground);
-    opacity: 0.12;
+    opacity: 0.10;
     width: 100%;
   }
 
