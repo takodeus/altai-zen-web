@@ -36,7 +36,7 @@ function TheAltaiPage() {
           height="40"
           viewBox="0 0 72 40"
           fill="none"
-          stroke="rgba(240, 234, 216, 0.8)"
+          stroke="rgba(31, 35, 38, 0.8)"
           strokeWidth="1"
           strokeLinecap="round"
           strokeLinejoin="round"
