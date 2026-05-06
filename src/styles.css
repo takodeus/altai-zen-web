@@ -16,7 +16,10 @@
   --background: #f7f4ed;
   --foreground: #2a2d2e;
   --accent: #8b5a3c;
+  --glacial: #506b73;
   --border: rgba(42, 45, 46, 0.08);
+  --rule: rgba(42, 45, 46, 0.08);
+  --muted-foreground: rgba(42, 45, 46, 0.6);
   --font-serif: "Cormorant Garamond", "Ivar", Georgia, serif;
   --font-sans: "Hanken Grotesk", "Suisse Intl", system-ui, sans-serif;
   --entrance-duration: 1.8s;
@@ -45,12 +48,17 @@
   }
 
   a:hover {
-    color: var(--accent);
+    color: var(--glacial);
   }
 
   a:focus-visible {
-    outline: 1px solid var(--accent);
+    outline: 1px solid var(--glacial);
     outline-offset: 4px;
+  }
+
+  ::selection {
+    background: rgba(139, 90, 60, 0.18);
+    color: var(--foreground);
   }
 }
 
