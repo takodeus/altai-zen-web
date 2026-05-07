@@ -77,7 +77,7 @@ function TheAltaiPage() {
         <p
           className="font-serif altai-closer"
           style={{
-            marginTop: "4em",
+            marginTop: "1.5em",
             marginBottom: 0,
             fontStyle: "italic",
             color: "#c9612a",
