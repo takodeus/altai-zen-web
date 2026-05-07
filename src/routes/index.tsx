@@ -32,7 +32,7 @@ function HomePage() {
           style={{
             background: "#1f2326",
             color: "#edeef0",
-            paddingTop: "28vh",
+            paddingTop: "14vh",
             paddingBottom: "16vh",
             paddingLeft: "max(24px, 7vw)",
             paddingRight: "max(24px, 7vw)",
