@@ -74,7 +74,15 @@ function TheAltaiPage() {
           </p>
           <p
             className="font-serif"
-            style={{ marginTop: "4em", fontStyle: "italic", marginBottom: 0, color: "var(--copper)" }}
+            style={{
+              marginTop: "4em",
+              fontStyle: "italic",
+              marginBottom: 0,
+              color: "#c9612a",
+              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+              lineHeight: 1.2,
+              letterSpacing: "-0.01em",
+            }}
           >
             This is why we took the name.
           </p>
