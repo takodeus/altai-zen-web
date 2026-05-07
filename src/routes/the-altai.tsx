@@ -31,7 +31,7 @@ function TheAltaiPage() {
           className="hairline hairline-draw"
           style={{ position: "absolute", top: "12vh", left: 0, right: 0 }}
         />
-        <p className="label-caps" style={{ color: "var(--accent)", margin: 0, marginBottom: "1.75em" }}>
+        <p className="label-caps" style={{ color: "var(--foreground)", margin: 0, marginBottom: "1.75em" }}>
           The Altai
         </p>
 
