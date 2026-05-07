@@ -1,6 +1,11 @@
 import { Link } from "@tanstack/react-router";
 
-export function Header() {
+type HeaderProps = {
+  theme?: "light" | "dark";
+};
+
+export function Header({ theme = "light" }: HeaderProps) {
+  const color = theme === "dark" ? "#edeef0" : "var(--foreground)";
   return (
     <header
       className="fixed top-0 left-0 right-0 z-10"
@@ -14,9 +19,10 @@ export function Header() {
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           fontWeight: 500,
+          color,
         }}
       >
-        Altai Group
+        The Altai Group
       </Link>
     </header>
   );
