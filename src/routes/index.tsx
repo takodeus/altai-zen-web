@@ -127,6 +127,8 @@ function HomePage() {
           <Link to="/the-altai">The Altai</Link>
           <span style={{ margin: "0 0.5em" }}>·</span>
           <a href="mailto:[email protected]">[email protected]</a>
+          <span style={{ margin: "0 0.5em" }}>·</span>
+          <span>© 2026 The Altai Group</span>
         </p>
       </footer>
 
