@@ -86,7 +86,7 @@ export function HomePage() {
             </span>
           </h1>
           <div style={{ width: "100%", maxWidth: "58ch", marginTop: "2.25em" }}>
-            <RidgeRule height={32} stroke="var(--copper-bright)" />
+            <RidgeRule height={32} stroke="var(--copper-bright)" strokeWidth={2} />
           </div>
           <p
             className="font-serif"
@@ -127,18 +127,18 @@ export function HomePage() {
             display: "flex",
             alignItems: "center",
             paddingTop: "4vh",
-            paddingBottom: "4vh",
+            paddingBottom: "1.5vh",
           }}
         >
           <div style={{ width: "100%" }}>
-            <RiverRule height={48} stroke="var(--accent)" />
+            <RiverRule height={48} stroke="var(--accent)" strokeWidth={2} />
           </div>
         </div>
       </main>
 
       <footer
         style={{
-          paddingTop: "4vh",
+          paddingTop: "1.5vh",
           paddingBottom: "4vh",
           paddingLeft: "max(24px, 7vw)",
           paddingRight: "max(24px, 7vw)",

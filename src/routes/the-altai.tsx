@@ -61,7 +61,7 @@ export function TheAltaiPage() {
         </h1>
 
         <div style={{ width: "100%", maxWidth: "50ch", marginTop: "2.25em" }}>
-          <RidgeRule height={32} stroke="var(--copper-bright)" />
+          <RidgeRule height={32} stroke="var(--copper-bright)" strokeWidth={2} />
         </div>
 
         <section style={{ marginTop: "2.5em", maxWidth: "50ch" }}>
@@ -103,12 +103,13 @@ export function TheAltaiPage() {
         <div style={{ height: "6vh" }} />
       </main>
 
-      <div style={{ marginTop: "8vh", paddingTop: "4vh", paddingBottom: "4vh" }}>
-        <RiverRule height={48} stroke="var(--accent)" />
+      <div style={{ marginTop: "8vh", paddingTop: "4vh", paddingBottom: "1.5vh" }}>
+        <RiverRule height={48} stroke="var(--accent)" strokeWidth={2} />
       </div>
 
       <footer
         style={{
+          paddingTop: "1.5vh",
           paddingBottom: "4vh",
           paddingLeft: "max(24px, 7vw)",
           paddingRight: "max(24px, 7vw)",
