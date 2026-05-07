@@ -1,45 +1,71 @@
-## Diagnosis
+## Reading the reference
 
-The page isn't boring because it's minimal — it's boring because the elements are *floating*. The headline sits in the vertical middle of a tall section with nothing anchoring it. The body paragraph below is detached. The accent rule is a thin tick that doesn't carry weight. Nothing establishes a relationship between the elements.
+The Cherre banner does three things at once:
 
-The fix is not "add more content." It's typographic presence and structural anchoring.
+1. A hand-drawn **mountain silhouette** sits as the visual anchor.
+2. A **dissolving network** (dots + lines) emerges from the ridge, encoding the "physical world → data" idea without a word of copy.
+3. A deep **gradient field** gives the whole thing atmosphere — dark to slightly darker, never flat.
 
-## Proposed changes (home page)
+That's a strong, literal expression of the same metaphor we're already using ("doctrine upstream, autonomy downstream", watershed, Altai). We can borrow the *structural idea* — terrain dissolving into network — without copying the execution (white-line-on-magenta would be off-brand for us).
 
-1. **Headline weight & size**
-   - Bump `font-size` from `clamp(2.5rem, 6vw, 4rem)` → `clamp(3.25rem, 8vw, 5.75rem)`.
-   - Tighten `line-height` from `1.1` → `0.98`.
-   - Tighten `letter-spacing` to `-0.02em`.
-   - Result: the title actually fills its column and reads as a statement, not a caption.
+## What I'd propose for the home page
 
-2. **Anchor the hero to the top, not the middle**
-   - Remove `justifyContent: center` and the `70vh` min-height. Replace with a fixed top offset (`paddingTop: 28vh`) so the title sits at a deliberate position relative to the wordmark — like a title page, not a vertically-centered slide.
+One single motif, hero-right, sitting opposite the headline. Not a banner, not a background — an editorial illustration.
 
-3. **Promote the second paragraph into the hero**
-   - Pull the "hardest problems in enterprise AI…" paragraph up directly under the subhead, separated by a single hairline rule rather than `12vh` of empty space. Treat the page as one composition, not two stacked sections with a void between them.
-   - Set this paragraph in serif (not sans), slightly larger (`1.15rem`), so it reads as continuous editorial body rather than a stranded note.
+### The motif
 
-4. **Stronger accent rule**
-   - The 60×2px copper tick becomes a 1px full-column rule (matching the body column width, ~50ch) in `--accent` at full opacity. Same idea, more presence — it sits *under* the headline like a printed rule, not floating beside it.
+A single SVG, ~480px wide on desktop, ~280px on mobile:
 
-5. **Typographic detail**
-   - Wordmark in the header: bump to `15px`, increase letter-spacing to `0.14em`, set in sans (Hanken Grotesk) caps. Currently it's serif and almost invisible — making it a true wordmark gives the page an upper anchor.
-   - Add a tiny sans label `EST. ——` or `A COORDINATION LAYER` above the headline in `label-caps` slate teal. One small piece of metadata gives the headline something to push off of.
+- **Left two-thirds**: a low, wide ridge profile drawn as one continuous 1px line in `var(--foreground)` at ~70% opacity — three peaks, asymmetric, in the spirit of the existing watershed glyph on /the-altai (same hand, larger scale).
+- **Right third**: the ridge's terminal slope dissolves into a sparse **network of dots and thin connecting lines** in `var(--accent)` (slate teal). ~25–35 nodes, hand-placed (not algorithmic-looking), connections varying in opacity from 100% near the ridge to 0% at the right edge.
+- No fill. No gradient. No shadow. Pure line work.
 
-6. **Footer**
-   - Add the hairline tighter to the footer text (`marginBottom: 12px` not `24px`) and reduce `marginTop` from `12vh` → `8vh`. Pull it back into the composition.
+This keeps the cartographic register: it reads as a survey diagram, not a marketing illustration.
 
-## What I am *not* proposing
+### Layout change
 
-- No imagery, no gradients, no animations beyond the existing entrance hairline.
-- No new sections, no nav, no CTA.
-- No color additions — accent stays slate teal, palette unchanged.
-- The Altai page stays as-is (it already has the glyph as its anchor).
+Current hero is single-column, left-aligned. Move to a two-column composition on desktop (≥900px):
 
-## Optional, if you want one more degree of presence
+```text
+┌───────────────────────────────────────────────────────┐
+│ ALTAI GROUP                                           │
+│                                                       │
+│                          ╱╲                           │
+│ A COORDINATION LAYER    ╱  ╲    ╱╲       · ·          │
+│                        ╱    ╲__╱  ╲___ · · · · ·      │
+│ Doctrine upstream.    ╱                 ·  ·  · ·     │
+│ Autonomy downstream.                       · ·        │
+│ ─────────────────                                     │
+│ A coordination layer for…                             │
+│                                                       │
+│ The hardest problems…                                 │
+└───────────────────────────────────────────────────────┘
+```
 
-Replace the current top-of-hero hairline with a pair of thin rules framing the headline — one above, one below — like a printed title block. Increases structural weight without adding content.
+On mobile the motif stacks above the label, scaled down, same line weights.
+
+### Background
+
+Stay on `#edeef0` cool stone. **Do not** add a gradient field — that would push us toward the "premium/cinematic" register the brief explicitly forbids. The reference uses gradient because it's a tech brand; we're a monograph. The motif provides all the visual interest the page needs.
+
+If you want a *whisper* more depth, I'd add a single `radial-gradient` at maybe 4% opacity behind the motif only — barely perceptible, just enough to make the line work feel like it's sitting on paper rather than floating. Optional.
+
+### What I am explicitly *not* proposing
+
+- No photographs, no raster mountain art.
+- No magenta, no dark mode, no glow.
+- No animation on the motif (the existing entrance hairline stays as-is).
+- No motif on /the-altai — that page keeps its single small printer's-mark glyph. The home gets the larger composition; The Altai keeps the editorial punctuation. Two scales of the same visual idea.
+- No new copy, no new sections.
+
+### Implementation notes (technical)
+
+- Single inline SVG component in `src/routes/index.tsx`, `aria-hidden="true"`.
+- `viewBox` around `0 0 480 200`, `preserveAspectRatio="xMidYMid meet"`.
+- Ridge: one `<path>` with `stroke="currentColor"`, `stroke-width="1"`, container at `color: var(--foreground); opacity: 0.7`.
+- Network: group of `<circle r="1.5">` and `<line stroke-width="0.6">` in `stroke="var(--accent)"` / `fill="var(--accent)"`, each with its own opacity in the 0.25–1.0 range.
+- Hero section becomes `display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6vw;` above 900px, single column below.
 
 ---
 
-Want me to apply all of the above, or pick a subset?
+Want me to build it as described? Or would you rather see the motif slightly different — e.g. ridge in slate teal and network in foreground, or a denser network, or no two-column layout (motif sits below the headline instead of beside it)?
