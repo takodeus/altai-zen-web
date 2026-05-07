@@ -27,10 +27,9 @@ export function RidgeRule({
         d="M 0 26 L 60 22 L 110 14 L 158 4 L 210 18 L 252 10 L 300 22 L 348 8 L 392 20 L 436 14 L 480 24"
         fill="none"
         stroke={stroke}
-        strokeWidth="1"
+        strokeWidth="1.25"
         strokeLinecap="round"
         strokeLinejoin="round"
-        vectorEffect="non-scaling-stroke"
       />
     </svg>
   );
