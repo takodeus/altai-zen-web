@@ -53,7 +53,7 @@ function HomePage() {
           />
           <p
             className="label-caps"
-            style={{ color: "#4ab8cc", margin: 0, marginBottom: "1.75em" }}
+            style={{ color: "#edeef0", margin: 0, marginBottom: "1.75em" }}
           >
             A coordination layer
           </p>
@@ -64,11 +64,11 @@ function HomePage() {
               fontWeight: 300,
               lineHeight: 0.98,
               letterSpacing: "-0.02em",
-              color: "#edeef0",
+              color: "#4ab8cc",
               margin: 0,
             }}
           >
-            <span style={{ color: "var(--copper-bright)" }}>Doctrine</span> upstream.
+            Doctrine upstream.
             <br />
             Autonomy downstream.
           </h1>
@@ -99,7 +99,8 @@ function HomePage() {
             }}
           >
             The hardest problems in enterprise AI are not problems of model capability. They are
-            problems of authority, memory, and coordination. Altai works on those.
+            problems of authority, memory, and coordination.{" "}
+            <span style={{ color: "var(--copper-bright)" }}>Altai works on those.</span>
           </p>
         </section>
       </main>
