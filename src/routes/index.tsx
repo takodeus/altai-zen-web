@@ -132,7 +132,7 @@ function HomePage() {
 
       <style>{`
         @media (max-width: 640px) {
-          .hero-section { padding-top: 22vh; }
+          .hero-section { padding-top: 12vh; }
         }
       `}</style>
     </div>
