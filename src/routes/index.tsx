@@ -60,7 +60,7 @@ export function HomePage() {
             className="font-serif"
             style={{
               fontWeight: 300,
-              lineHeight: 1.05,
+              lineHeight: 0.98,
               letterSpacing: "-0.02em",
               color: "#5a8f99",
               margin: 0,
@@ -79,12 +79,13 @@ export function HomePage() {
               style={{
                 display: "block",
                 fontSize: "clamp(3.25rem, 8vw, 5.75rem)",
+                marginTop: "0.12em",
               }}
             >
               Autonomy downstream.
             </span>
           </h1>
-          <div style={{ width: "112%", maxWidth: "58ch", marginTop: "2.25em", marginLeft: "-6%" }}>
+          <div style={{ width: "100%", maxWidth: "58ch", marginTop: "2.25em" }}>
             <RidgeRule height={32} stroke="var(--copper-bright)" />
           </div>
           <p
