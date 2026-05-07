@@ -80,7 +80,7 @@ function TheAltaiPage() {
             marginTop: "1.5em",
             marginBottom: 0,
             fontStyle: "italic",
-            color: "#c9612a",
+            color: "var(--copper-bright)",
             fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)",
             lineHeight: 1.2,
             letterSpacing: "-0.01em",
