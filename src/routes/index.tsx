@@ -28,10 +28,7 @@ function HomePage() {
       <main>
         <section
           style={{
-            minHeight: "70vh",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
+            paddingTop: "28vh",
             position: "relative",
           }}
           className="hero-section"
@@ -40,12 +37,19 @@ function HomePage() {
             className="hairline hairline-draw"
             style={{ position: "absolute", top: "12vh", left: 0, right: 0 }}
           />
+          <p
+            className="label-caps"
+            style={{ color: "var(--accent)", margin: 0, marginBottom: "1.75em" }}
+          >
+            A coordination layer
+          </p>
           <h1
             className="font-serif"
             style={{
-              fontSize: "clamp(2.5rem, 6vw, 4rem)",
+              fontSize: "clamp(3.25rem, 8vw, 5.75rem)",
               fontWeight: 300,
-              lineHeight: 1.1,
+              lineHeight: 0.98,
+              letterSpacing: "-0.02em",
               color: "var(--foreground)",
               margin: 0,
             }}
@@ -56,16 +60,17 @@ function HomePage() {
           </h1>
           <div
             style={{
-              width: "60px",
-              height: "2px",
+              width: "100%",
+              maxWidth: "50ch",
+              height: "1px",
               backgroundColor: "var(--accent)",
-              marginTop: "16px",
+              marginTop: "2.25em",
             }}
           />
           <p
             className="font-sans"
             style={{
-              marginTop: "32px",
+              marginTop: "1.5em",
               fontSize: "1.05rem",
               lineHeight: 1.6,
               maxWidth: "50ch",
@@ -74,18 +79,24 @@ function HomePage() {
             A coordination layer for real assets investors and operators adapting to machine-speed
             environments.
           </p>
-        </section>
-
-        <section style={{ marginTop: "12vh" }}>
-          <p className="font-serif" style={{ maxWidth: "50ch", margin: 0 }}>
+          <p
+            className="font-serif"
+            style={{
+              marginTop: "2.5em",
+              fontSize: "1.15rem",
+              lineHeight: 1.6,
+              maxWidth: "50ch",
+              margin: "2.5em 0 0 0",
+            }}
+          >
             The hardest problems in enterprise AI are not problems of model capability. They are
             problems of authority, memory, and coordination. Altai works on those.
           </p>
         </section>
       </main>
 
-      <footer style={{ marginTop: "12vh", paddingBottom: "4vh" }}>
-        <div className="hairline" style={{ marginBottom: "24px" }} />
+      <footer style={{ marginTop: "8vh", paddingBottom: "4vh" }}>
+        <div className="hairline" style={{ marginBottom: "12px" }} />
         <p
           className="font-sans"
           style={{
@@ -104,7 +115,7 @@ function HomePage() {
 
       <style>{`
         @media (max-width: 640px) {
-          .hero-section { min-height: 60vh; }
+          .hero-section { padding-top: 22vh; }
         }
       `}</style>
     </div>
