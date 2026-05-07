@@ -99,7 +99,7 @@ function HomePage() {
             }}
           >
             For real assets investors and operators operating at machine speed,
-            where decisions propagate faster than organizations can coordinate.
+            where decisions propagate faster than organizations can reconcile.
           </p>
           <p
             className="font-serif"
