@@ -97,7 +97,7 @@ export function TheAltaiPage() {
             letterSpacing: "-0.01em",
           }}
         >
-          This is why we took the name.
+          This is why we are Altai.
         </p>
 
         <div style={{ height: "6vh" }} />

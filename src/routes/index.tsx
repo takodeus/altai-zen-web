@@ -126,7 +126,7 @@ export function HomePage() {
               "linear-gradient(to bottom, #1f2326 0%, #1f2326 50%, var(--background) 50%, var(--background) 100%)",
             display: "flex",
             alignItems: "center",
-            paddingTop: "4vh",
+            paddingTop: "2vh",
             paddingBottom: "1.5vh",
           }}
         >
