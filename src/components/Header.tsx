@@ -8,10 +8,15 @@ export function Header() {
     >
       <Link
         to="/"
-        className="font-serif"
-        style={{ fontSize: "14px", letterSpacing: "0.05em" }}
+        className="font-sans"
+        style={{
+          fontSize: "15px",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          fontWeight: 500,
+        }}
       >
-        ALTAI GROUP
+        Altai Group
       </Link>
     </header>
   );

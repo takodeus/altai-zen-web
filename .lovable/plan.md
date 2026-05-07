@@ -1,76 +1,45 @@
-# Altai Group — Build Plan
+## Diagnosis
 
-A two-page static site. The brief is exhaustive and unambiguous, so this plan executes it literally without additions.
+The page isn't boring because it's minimal — it's boring because the elements are *floating*. The headline sits in the vertical middle of a tall section with nothing anchoring it. The body paragraph below is detached. The accent rule is a thin tick that doesn't carry weight. Nothing establishes a relationship between the elements.
 
-## Pages
+The fix is not "add more content." It's typographic presence and structural anchoring.
 
-- `/` — Home (`src/routes/index.tsx`, replace placeholder)
-- `/the-altai` — The Altai (`src/routes/the-altai.tsx`)
+## Proposed changes (home page)
 
-## Shared
+1. **Headline weight & size**
+   - Bump `font-size` from `clamp(2.5rem, 6vw, 4rem)` → `clamp(3.25rem, 8vw, 5.75rem)`.
+   - Tighten `line-height` from `1.1` → `0.98`.
+   - Tighten `letter-spacing` to `-0.02em`.
+   - Result: the title actually fills its column and reads as a statement, not a caption.
 
-- `src/components/Header.tsx` — wordmark "ALTAI GROUP" upper-left, links to `/`. Used on both pages.
-- `src/components/Footer.tsx` — used only on home.
-- `src/routes/__root.tsx` — set `<html lang="en">`, update `head()` meta (title "Altai Group", description matching the subhead). Remove sample meta.
+2. **Anchor the hero to the top, not the middle**
+   - Remove `justifyContent: center` and the `70vh` min-height. Replace with a fixed top offset (`paddingTop: 28vh`) so the title sits at a deliberate position relative to the wordmark — like a title page, not a vertically-centered slide.
 
-## Design tokens (`src/styles.css`)
+3. **Promote the second paragraph into the hero**
+   - Pull the "hardest problems in enterprise AI…" paragraph up directly under the subhead, separated by a single hairline rule rather than `12vh` of empty space. Treat the page as one composition, not two stacked sections with a void between them.
+   - Set this paragraph in serif (not sans), slightly larger (`1.15rem`), so it reads as continuous editorial body rather than a stranded note.
 
-Replace existing tokens with the four-value palette:
-- `--background: #F7F4ED` (alpine white)
-- `--foreground: #2A2D2E` (basalt slate)
-- `--accent: #8B5A3C` (oxidized copper)
-- `--border: rgba(42,45,46,0.08)` (hairline)
+4. **Stronger accent rule**
+   - The 60×2px copper tick becomes a 1px full-column rule (matching the body column width, ~50ch) in `--accent` at full opacity. Same idea, more presence — it sits *under* the headline like a printed rule, not floating beside it.
 
-Add font-face declarations for self-hosted Cormorant Garamond and Hanken Grotesk woff2 (Ivar/Suisse Intl are not freely licensed; use the fallbacks specified in the brief). Expose as `--font-serif` and `--font-sans`.
+5. **Typographic detail**
+   - Wordmark in the header: bump to `15px`, increase letter-spacing to `0.14em`, set in sans (Hanken Grotesk) caps. Currently it's serif and almost invisible — making it a true wordmark gives the page an upper anchor.
+   - Add a tiny sans label `EST. ——` or `A COORDINATION LAYER` above the headline in `label-caps` slate teal. One small piece of metadata gives the headline something to push off of.
 
-Body defaults: serif, 17px, line-height 1.7, ranged left.
-Utility class for tracked small-cap labels (sans, 0.6rem, 0.18em tracking, uppercase).
-CSS variable `--entrance-duration: 1.8s` for the hairline draw.
+6. **Footer**
+   - Add the hairline tighter to the footer text (`marginBottom: 12px` not `24px`) and reduce `marginTop` from `12vh` → `8vh`. Pull it back into the composition.
 
-Keyframes: `hairline-draw` scaling X from 0 to 1, transform-origin left, 1.8s ease-out cubic, runs once. Wrap in `@media (prefers-reduced-motion: no-preference)`; otherwise render the line at full width with no animation.
+## What I am *not* proposing
 
-Link transition: 500ms color only. No other hover effects.
+- No imagery, no gradients, no animations beyond the existing entrance hairline.
+- No new sections, no nav, no CTA.
+- No color additions — accent stays slate teal, palette unchanged.
+- The Altai page stays as-is (it already has the glyph as its anchor).
 
-## Layout rules
+## Optional, if you want one more degree of presence
 
-- Page padding: `7vw` sides, min 24px on mobile.
-- Body prose max-width: 640px / 50ch as specified per block.
-- Vertical rhythm: 12vh between major blocks.
+Replace the current top-of-hero hairline with a pair of thin rules framing the headline — one above, one below — like a printed title block. Increases structural weight without adding content.
 
-## Home page contents (in order)
+---
 
-1. Fixed transparent header with wordmark.
-2. Hero (70vh desktop / 60vh mobile):
-   - Top hairline (animated entrance).
-   - Headline serif weight 300, `clamp(2.5rem,6vw,4rem)`, two lines: "Doctrine upstream." / "Autonomy downstream."
-   - Copper hairline 60×2px, 16px below headline.
-   - Subhead sans 1.05rem/1.6, max-width 50ch, 32px below copper hairline: coordination-layer sentence.
-3. 12vh gap, then body paragraph (serif, max 50ch): the "hardest problems" sentence.
-4. 12vh gap, then footer: top hairline, single centered sans 12px line at 60% opacity: `The Altai · [email protected]`. "The Altai" → `/the-altai` Link, email → `mailto:`. Middle dot separator.
-
-## The Altai page contents
-
-1. Header (wordmark only).
-2. 20vh top spacing, then label "THE ALTAI" in copper small-caps tracked.
-3. Four serif paragraphs, max 50ch, 1.5em spacing, exact copy from brief.
-4. 4em below final paragraph: italic serif line "This is why we took the name."
-5. 20vh whitespace. No footer.
-
-## Constraints honored
-
-- Straight quotes only in JSX literals; no em dashes anywhere.
-- No images, OG images, analytics, schema, cookie banner, sitemap additions, social links, forms, navigation beyond the wordmark and footer link.
-- Semantic HTML (`header`, `main`, `section`, `footer`); visible focus states on the two interactive elements.
-- No JS beyond the CSS-driven entrance animation; site works without JS.
-- Favicon: simple basalt-slate square SVG in `public/` referenced from `__root.tsx` head links.
-
-## Verification
-
-- Production build completes.
-- Visual check at 1440 / 768 / 375.
-- Confirm mailto, footer→/the-altai, and wordmark→/ navigation.
-- Confirm entrance animation runs once and is suppressed under `prefers-reduced-motion`.
-
-## Out of scope (explicitly not built)
-
-Any page, section, asset, script, or feature not enumerated above.
+Want me to apply all of the above, or pick a subset?
