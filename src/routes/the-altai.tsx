@@ -88,7 +88,7 @@ export function TheAltaiPage() {
         <p
           className="font-serif altai-closer"
           style={{
-            marginTop: "0.5em",
+            marginTop: "1.5em",
             marginBottom: 0,
             fontStyle: "italic",
             color: "var(--copper-bright)",

@@ -54,7 +54,7 @@ export function HomePage() {
             className="label-caps"
             style={{ color: "#edeef0", margin: 0, marginBottom: "1.75em" }}
           >
-            Coordination layer
+            Operational AI
           </p>
           <h1
             className="font-serif"
