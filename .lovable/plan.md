@@ -1,47 +1,64 @@
-Combined execution of all pending changes:
+## Two changes, both about coherence
 
-## 1. Header → "The Altai Group", links home
+### 1. Restore a clear accent moment on each page
 
-`src/components/Header.tsx`: change wordmark text from `Altai Group` to `The Altai Group`. Already wrapped in `<Link to="/">`, so it returns home from any route.
+Slate teal (`#4a6b7a` light surface, `#6a8b9a` dark surface) should appear in the same two structural roles on both pages: **the small caps label** and **the ridge divider**. Right now the home page's ridge sits at the wrong width and the Altai page has no ridge in accent at all.
 
-Also update `<title>` / `og:title` on `src/routes/index.tsx` to `The Altai Group`.
+**Home (`src/routes/index.tsx`)** — the ridge is currently the divider but reads weakly because `RidgeRule` uses `vector-effect: non-scaling-stroke` plus `preserveAspectRatio="none"` and stretches across only 50ch. Bump its visual weight:
+- Stroke color stays `#6a8b9a` (already accent on dark).
+- Increase `strokeWidth` to `1.25` and remove `non-scaling-stroke` so the line gets thicker as it stretches.
+- Keep width at `50ch`, height at `32px`.
+- The "A coordination layer" label is already in `#6a8b9a` — keep.
 
-## 2. Replace the straight rule with a mountain-ridge divider
+**The Altai (`src/routes/the-altai.tsx`)** — currently the printer's-mark ridge is drawn in `var(--foreground)` (deep ink). Switch it to `var(--accent)` slate teal so the accent shows up structurally in the same place. Keep size (96px wide, 28px tall) and 0.8 opacity.
 
-On the home hero, the 1px slate-teal `<div>` rule sitting under the headline becomes a small inline SVG ridge:
+### 2. Restructure /the-altai to mirror home's composition (light palette)
 
-- One continuous 1px stroke in `var(--accent)`, full opacity.
-- Three asymmetric peaks, shallow, drawn in the same hand as the /the-altai glyph but stretched horizontally.
-- ~32px tall, `width: 100%; max-width: 50ch` matching the body column.
-- `preserveAspectRatio="none"` so it stretches like a rule.
-- No fill, no nodes, no animation, `aria-hidden="true"`.
+Right now the page reads as a different layout: tiny mark → tiny label → body paragraphs. Home reads as: label → large serif headline → ridge divider → body. Apply the same structural rhythm on /the-altai, just on cool stone instead of deep ink.
 
-## 3. Remove the right-column network motif
+New /the-altai structure:
 
-Delete the `RidgeNetwork` component and `.hero-grid` / `.hero-motif` CSS from `src/routes/index.tsx`. Hero returns to single-column, left-aligned. The ridge now lives only as the divider.
+```text
+[ small ridge mark in slate teal, top-left ]
 
-## 4. Repeat the ridge on /the-altai
+THE ALTAI                          ← label-caps, slate teal
 
-Extract the ridge into `src/components/RidgeRule.tsx` (shared). Use it in two places:
+The watershed.                     ← large serif headline,
+                                     same clamp as home, deep ink
 
-- `src/routes/index.tsx` — as the divider under the headline (max-width 50ch, ~32px tall).
-- `src/routes/the-altai.tsx` — replace the existing 72×40 three-stroke watershed glyph above the "THE ALTAI" label with the same `RidgeRule`, sized small (width ~96px, height ~28px) so it still reads as a printer's mark, not a horizon line. Same drawing, two scales.
+────── ridge divider ──────        ← RidgeRule, slate teal,
+                                     50ch wide, 32px tall
 
-## 5. Color-differentiate the home hero
+The Altai is among the oldest…    ← body paragraphs, unchanged copy
+What makes the range significant…
+Major river systems originate…
+A decision made in the catchment…
 
-Wrap the home hero in a full-bleed inverted band — the only place on the site that flips palette.
+This is why we took the name.     ← italic closer, unchanged
+```
 
-- Band background: `#1f2326` (deep ink), text: `#edeef0` (cool stone).
-- Accent stays `#4a6b7a` slate teal — reads on both surfaces; bumped slightly to `#6a8b9a` for the ridge stroke inside the dark band so it remains visible.
-- Band extends edge-to-edge via negative horizontal margin, with matching inner padding to restore gutters.
-- Footer stays on the normal cool-stone surface, outside the band.
-- Header sits over the dark band on home only. Add a `theme?: "dark" | "light"` prop to `Header`; home passes `"dark"` and the wordmark renders in `#edeef0`. Default stays current behavior so /the-altai is unchanged.
+Specifics:
+- Add a new headline: `The watershed.` — `font-serif`, `clamp(3.25rem, 8vw, 5.75rem)`, weight 300, lineHeight 0.98, letter-spacing -0.02em, color `var(--foreground)`. Same exact spec as home's `<h1>`.
+- Move the small ridge mark above the label (already there).
+- Add a `RidgeRule` divider (slate teal accent, 50ch / 32px) between the headline and the first paragraph — mirroring home.
+- Keep the existing label `THE ALTAI` in slate teal.
+- Keep all body copy verbatim. Keep the closing italic line.
+- Same outer padding (`max(24px, 7vw)`), same `paddingTop: 28vh` as home for vertical anchor consistency. (Currently 20vh — bump to 28vh.)
+- Mobile breakpoint: same `@media (max-width: 640px) { padding-top: 22vh; }` rule as home, scoped via a class.
 
-## Files touched
+The page now reads as the quiet light-surface companion to the dark home: same skeleton, opposite palette, single recurring motif (the ridge) in three scales — small printer's mark, divider, and (on home) hero divider.
 
-- `src/components/Header.tsx` — text + theme prop.
-- `src/components/RidgeRule.tsx` — new shared SVG.
-- `src/routes/index.tsx` — meta title, remove network/grid, add ridge divider, wrap hero in inverted band, pass `theme="dark"` to Header.
-- `src/routes/the-altai.tsx` — swap glyph for small `RidgeRule`.
+### What's not changing
 
-Nothing else changes (copy, footer, type, /the-altai body all preserved).
+- No copy edits.
+- No new sections, no nav, no animations.
+- Home palette stays inverted; /the-altai stays on cool stone.
+- Header, footer, fonts, type scale all unchanged.
+
+### Files touched
+
+- `src/components/RidgeRule.tsx` — bump strokeWidth to 1.25, drop `non-scaling-stroke`.
+- `src/routes/the-altai.tsx` — recolor mark to accent, add headline + accent divider, bump padding-top, add mobile rule.
+- `src/routes/index.tsx` — no change needed unless ridge still reads weak after the RidgeRule tweak; if so, no further edits.
+
+Proceed?

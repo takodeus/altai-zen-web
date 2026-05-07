@@ -5,13 +5,13 @@ import { RidgeRule } from "../components/RidgeRule";
 export const Route = createFileRoute("/the-altai")({
   head: () => ({
     meta: [
-      { title: "The Altai — Altai Group" },
+      { title: "The Altai — The Altai Group" },
       {
         name: "description",
         content:
           "The Altai is among the oldest mountain systems in Asia. The watershed is what makes it significant.",
       },
-      { property: "og:title", content: "The Altai — Altai Group" },
+      { property: "og:title", content: "The Altai — The Altai Group" },
       {
         property: "og:description",
         content:
@@ -26,19 +26,37 @@ function TheAltaiPage() {
   return (
     <div style={{ minHeight: "100vh", paddingLeft: "max(24px, 7vw)", paddingRight: "max(24px, 7vw)" }}>
       <Header />
-      <main style={{ paddingTop: "20vh" }}>
+      <main className="altai-section" style={{ paddingTop: "28vh", position: "relative" }}>
         <div
           className="hairline hairline-draw"
-          style={{ position: "absolute", top: "12vh", left: "max(24px, 7vw)", right: "max(24px, 7vw)" }}
+          style={{ position: "absolute", top: "12vh", left: 0, right: 0 }}
         />
         <div style={{ width: "96px", marginBottom: "1.75em", opacity: 0.8 }}>
-          <RidgeRule height={28} stroke="var(--foreground)" />
+          <RidgeRule height={28} stroke="var(--accent)" />
         </div>
-        <p className="label-caps" style={{ color: "var(--accent)", margin: 0 }}>
+        <p className="label-caps" style={{ color: "var(--accent)", margin: 0, marginBottom: "1.75em" }}>
           The Altai
         </p>
 
-        <section style={{ marginTop: "3em", maxWidth: "50ch" }}>
+        <h1
+          className="font-serif"
+          style={{
+            fontSize: "clamp(3.25rem, 8vw, 5.75rem)",
+            fontWeight: 300,
+            lineHeight: 0.98,
+            letterSpacing: "-0.02em",
+            color: "var(--foreground)",
+            margin: 0,
+          }}
+        >
+          The watershed.
+        </h1>
+
+        <div style={{ width: "100%", maxWidth: "50ch", marginTop: "2.25em" }}>
+          <RidgeRule height={32} stroke="var(--accent)" />
+        </div>
+
+        <section style={{ marginTop: "2.5em", maxWidth: "50ch" }}>
           <p className="font-serif" style={{ margin: 0 }}>
             The Altai is among the oldest mountain systems in Asia, formed roughly five hundred
             million years ago and shaped since by tectonic uplift and glacial cycles.
@@ -67,6 +85,12 @@ function TheAltaiPage() {
 
         <div style={{ height: "20vh" }} />
       </main>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .altai-section { padding-top: 22vh; }
+        }
+      `}</style>
     </div>
   );
 }
