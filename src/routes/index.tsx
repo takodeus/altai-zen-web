@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import { RidgeRule } from "../components/RidgeRule";
+import { RiverRule } from "../components/RiverRule";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
 export function HomePage() {
@@ -116,9 +117,23 @@ export function HomePage() {
         </section>
       </main>
 
-      <footer
+      <div
         style={{
           marginTop: "8vh",
+          paddingLeft: "max(24px, 7vw)",
+          paddingRight: "max(24px, 7vw)",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ width: "100%", maxWidth: "50ch" }}>
+          <RiverRule height={32} stroke="var(--accent)" />
+        </div>
+      </div>
+
+      <footer
+        style={{
+          marginTop: "4vh",
           paddingBottom: "4vh",
           paddingLeft: "max(24px, 7vw)",
           paddingRight: "max(24px, 7vw)",

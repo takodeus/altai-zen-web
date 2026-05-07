@@ -1,5 +1,6 @@
 import { Header } from "../components/Header";
 import { RidgeRule } from "../components/RidgeRule";
+import { RiverRule } from "../components/RiverRule";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
 export function TheAltaiPage() {
@@ -89,7 +90,19 @@ export function TheAltaiPage() {
         <div style={{ height: "6vh" }} />
       </main>
 
-      <footer style={{ marginTop: "8vh", paddingBottom: "4vh" }}>
+      <div
+        style={{
+          marginTop: "8vh",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ width: "100%", maxWidth: "50ch" }}>
+          <RiverRule height={32} stroke="var(--accent)" />
+        </div>
+      </div>
+
+      <footer style={{ marginTop: "4vh", paddingBottom: "4vh" }}>
         <div className="hairline" style={{ marginBottom: "12px" }} />
         <p
           className="font-sans"
