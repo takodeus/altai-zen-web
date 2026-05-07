@@ -24,10 +24,10 @@ export function RidgeRule({
       style={{ width: "100%", height, display: "block", ...style }}
     >
       <path
-        d="M 0 26 L 60 22 L 110 14 L 158 4 L 210 18 L 252 10 L 300 22 L 348 8 L 392 20 L 436 14 L 480 24"
+        d="M -20 25 L 38 21 L 92 11 L 151 3 L 198 19 L 233 9 L 271 23 L 312 6 L 347 17 L 389 11 L 428 22 L 470 15 L 520 27"
         fill="none"
         stroke={stroke}
-        strokeWidth="1.25"
+        strokeWidth="0.9"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
