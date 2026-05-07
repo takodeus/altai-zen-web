@@ -1,64 +1,59 @@
-## Two changes, both about coherence
+## Two-accent system: slate teal (structure) + oxidized copper (emphasis)
 
-### 1. Restore a clear accent moment on each page
+The brief's discipline was "one accent, used sparingly." Adding a second color only works if each has a **distinct, non-overlapping job**. Otherwise it's just decoration.
 
-Slate teal (`#4a6b7a` light surface, `#6a8b9a` dark surface) should appear in the same two structural roles on both pages: **the small caps label** and **the ridge divider**. Right now the home page's ridge sits at the wrong width and the Altai page has no ridge in accent at all.
+### Roles
 
-**Home (`src/routes/index.tsx`)** — the ridge is currently the divider but reads weakly because `RidgeRule` uses `vector-effect: non-scaling-stroke` plus `preserveAspectRatio="none"` and stretches across only 50ch. Bump its visual weight:
-- Stroke color stays `#6a8b9a` (already accent on dark).
-- Increase `strokeWidth` to `1.25` and remove `non-scaling-stroke` so the line gets thicker as it stretches.
-- Keep width at `50ch`, height at `32px`.
-- The "A coordination layer" label is already in `#6a8b9a` — keep.
+- **Slate teal** (structural) — keeps everything it does today: small caps labels, ridge dividers, hairline rule. The cartographic register.
+- **Oxidized copper** (emphasis) — appears **once or twice per page maximum**, only on words/marks that earn it. Never on structural elements, never on more than one element in the same eyeline.
 
-**The Altai (`src/routes/the-altai.tsx`)** — currently the printer's-mark ridge is drawn in `var(--foreground)` (deep ink). Switch it to `var(--accent)` slate teal so the accent shows up structurally in the same place. Keep size (96px wide, 28px tall) and 0.8 opacity.
+If copper ever appears next to teal in the same horizontal band, one of them is wrong.
 
-### 2. Restructure /the-altai to mirror home's composition (light palette)
+### Color values
 
-Right now the page reads as a different layout: tiny mark → tiny label → body paragraphs. Home reads as: label → large serif headline → ridge divider → body. Apply the same structural rhythm on /the-altai, just on cool stone instead of deep ink.
+- `--accent` (teal): keep current `#1f7a8c` light / `#4ab8cc` dark.
+- `--copper`: `#a87a4a` on light surfaces (cool-stone Altai page).
+- `--copper-bright`: `#c69468` on the dark hero — same hue, lifted ~15% for legibility on `#1f2326`.
 
-New /the-altai structure:
+Both copper values are desaturated and earthy — oxidized, not new-penny. They sit in the same mineral family as the teal: things you'd find in rock, not on a screen.
 
-```text
-[ small ridge mark in slate teal, top-left ]
+### Where copper appears
 
-THE ALTAI                          ← label-caps, slate teal
+**Home (dark hero) — exactly one use:**
+- The word **"Doctrine"** in the headline rendered in `--copper-bright`. Everything else stays parchment. The headline reads: [copper]Doctrine[/] upstream. / Autonomy downstream.
+- Reasoning: it's the doctrine that's the upstream act — copper marks the hinge word, not decoration.
 
-The watershed.                     ← large serif headline,
-                                     same clamp as home, deep ink
+**The Altai (light) — exactly one use:**
+- The closing italic line **"This is why we took the name."** in `--copper` instead of deep ink. It already sits alone with 4em of breathing room above it; coloring it makes the closer feel like a signature rather than a sentence.
 
-────── ridge divider ──────        ← RidgeRule, slate teal,
-                                     50ch wide, 32px tall
+**Footer / header / body / dividers / labels — no copper anywhere.** The accent stays disciplined.
 
-The Altai is among the oldest…    ← body paragraphs, unchanged copy
-What makes the range significant…
-Major river systems originate…
-A decision made in the catchment…
+### What it looks like in tokens
 
-This is why we took the name.     ← italic closer, unchanged
+```css
+:root {
+  --accent: #1f7a8c;          /* teal, structural */
+  --accent-bright: #4ab8cc;   /* teal on dark */
+  --copper: #a87a4a;          /* copper, emphasis, on light */
+  --copper-bright: #c69468;   /* copper, emphasis, on dark */
+}
 ```
-
-Specifics:
-- Add a new headline: `The watershed.` — `font-serif`, `clamp(3.25rem, 8vw, 5.75rem)`, weight 300, lineHeight 0.98, letter-spacing -0.02em, color `var(--foreground)`. Same exact spec as home's `<h1>`.
-- Move the small ridge mark above the label (already there).
-- Add a `RidgeRule` divider (slate teal accent, 50ch / 32px) between the headline and the first paragraph — mirroring home.
-- Keep the existing label `THE ALTAI` in slate teal.
-- Keep all body copy verbatim. Keep the closing italic line.
-- Same outer padding (`max(24px, 7vw)`), same `paddingTop: 28vh` as home for vertical anchor consistency. (Currently 20vh — bump to 28vh.)
-- Mobile breakpoint: same `@media (max-width: 640px) { padding-top: 22vh; }` rule as home, scoped via a class.
-
-The page now reads as the quiet light-surface companion to the dark home: same skeleton, opposite palette, single recurring motif (the ridge) in three scales — small printer's mark, divider, and (on home) hero divider.
-
-### What's not changing
-
-- No copy edits.
-- No new sections, no nav, no animations.
-- Home palette stays inverted; /the-altai stays on cool stone.
-- Header, footer, fonts, type scale all unchanged.
 
 ### Files touched
 
-- `src/components/RidgeRule.tsx` — bump strokeWidth to 1.25, drop `non-scaling-stroke`.
-- `src/routes/the-altai.tsx` — recolor mark to accent, add headline + accent divider, bump padding-top, add mobile rule.
-- `src/routes/index.tsx` — no change needed unless ridge still reads weak after the RidgeRule tweak; if so, no further edits.
+- `src/styles.css` — add `--copper` and `--copper-bright` tokens.
+- `src/routes/index.tsx` — wrap "Doctrine" in a `<span style={{ color: "var(--copper-bright)" }}>`.
+- `src/routes/the-altai.tsx` — color the closing italic line `var(--copper)`.
+
+### What's not changing
+
+- Slate teal remains the only structural accent.
+- No copper in dividers, labels, hairlines, links, or headers.
+- No copper on /the-altai's heading, body, or label.
+- No new sections, no copy edits.
+
+### The discipline test
+
+After deploying, walk through both pages. If copper appears more than once per page, or appears anywhere structural, it's overused — pull it back. The rule is: copper marks meaning, teal marks structure. If you can't say in one sentence why a copper element earned the color, it shouldn't be copper.
 
 Proceed?
