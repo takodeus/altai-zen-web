@@ -89,16 +89,17 @@ function HomePage() {
             <RidgeRule height={32} stroke="#5a8f99" />
           </div>
           <p
-            className="font-sans"
+            className="font-serif"
             style={{
               marginTop: "3.25em",
-              fontSize: "1.05rem",
+              fontSize: "1.15rem",
               lineHeight: 1.6,
               maxWidth: "50ch",
               color: "#edeef0",
             }}
           >
-            For real assets investors and operators operating at machine speed.
+            For real assets investors and operators operating at machine speed,
+            where decisions propagate faster than organizations can coordinate.
           </p>
           <p
             className="font-serif"
