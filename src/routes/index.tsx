@@ -124,7 +124,22 @@ export function HomePage() {
           paddingRight: "max(24px, 7vw)",
         }}
       >
-        <div className="hairline" style={{ marginBottom: "12px" }} />
+        <div className="hairline" style={{ marginBottom: "16px" }} />
+        <p
+          className="font-serif"
+          style={{
+            fontSize: "15px",
+            fontStyle: "italic",
+            color: "var(--copper-bright)",
+            textAlign: "center",
+            margin: 0,
+            marginBottom: "8px",
+          }}
+        >
+          <Link to="/the-altai" style={{ color: "inherit", textDecoration: "none" }}>
+            The Altai
+          </Link>
+        </p>
         <p
           className="font-sans"
           style={{
@@ -135,11 +150,7 @@ export function HomePage() {
             margin: 0,
           }}
         >
-          <Link to="/the-altai">The Altai</Link>
-          <span style={{ margin: "0 0.5em" }}>{"\u00B7"}</span>
-          <a href="mailto:[email protected]">[email protected]</a>
-          <span style={{ margin: "0 0.5em" }}>{"\u00B7"}</span>
-          <span>{"\u00A9"} 2026 The Altai Group</span>
+          {"\u00A9"} 2026 The Altai Group
         </p>
       </footer>
 
