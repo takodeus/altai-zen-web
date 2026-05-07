@@ -1,28 +1,25 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "../components/Header";
 import { RidgeRule } from "../components/RidgeRule";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
-export const Route = createFileRoute("/the-altai")({
-  head: () => ({
+export function TheAltaiPage() {
+  useDocumentMeta({
+    title: "The Altai \u2014 The Altai Group",
     meta: [
-      { title: "The Altai — The Altai Group" },
       {
         name: "description",
         content:
           "The Altai is among the oldest mountain systems in Asia. The watershed is what makes it significant.",
       },
-      { property: "og:title", content: "The Altai — The Altai Group" },
+      { property: "og:title", content: "The Altai \u2014 The Altai Group" },
       {
         property: "og:description",
         content:
           "The Altai is among the oldest mountain systems in Asia. The watershed is what makes it significant.",
       },
     ],
-  }),
-  component: TheAltaiPage,
-});
+  });
 
-function TheAltaiPage() {
   return (
     <div style={{ minHeight: "100vh", paddingLeft: "max(24px, 7vw)", paddingRight: "max(24px, 7vw)" }}>
       <Header />
@@ -104,7 +101,7 @@ function TheAltaiPage() {
             margin: 0,
           }}
         >
-          © 2026 The Altai Group
+          {"\u00A9"} 2026 The Altai Group
         </p>
       </footer>
 

@@ -1,11 +1,12 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import { RidgeRule } from "../components/RidgeRule";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
+export function HomePage() {
+  useDocumentMeta({
+    title: "The Altai Group",
     meta: [
-      { title: "The Altai Group" },
       {
         name: "description",
         content:
@@ -18,11 +19,8 @@ export const Route = createFileRoute("/")({
           "A coordination layer for real assets investors and operators adapting to machine-speed environments.",
       },
     ],
-  }),
-  component: HomePage,
-});
+  });
 
-function HomePage() {
   return (
     <div style={{ minHeight: "100vh" }}>
       <Header theme="dark" />
@@ -138,10 +136,10 @@ function HomePage() {
           }}
         >
           <Link to="/the-altai">The Altai</Link>
-          <span style={{ margin: "0 0.5em" }}>·</span>
+          <span style={{ margin: "0 0.5em" }}>{"\u00B7"}</span>
           <a href="mailto:[email protected]">[email protected]</a>
-          <span style={{ margin: "0 0.5em" }}>·</span>
-          <span>© 2026 The Altai Group</span>
+          <span style={{ margin: "0 0.5em" }}>{"\u00B7"}</span>
+          <span>{"\u00A9"} 2026 The Altai Group</span>
         </p>
       </footer>
 
