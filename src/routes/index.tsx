@@ -68,7 +68,7 @@ function HomePage() {
               margin: 0,
             }}
           >
-            Doctrine upstream.
+            <span style={{ color: "var(--copper-bright)" }}>Doctrine</span> upstream.
             <br />
             Autonomy downstream.
           </h1>
