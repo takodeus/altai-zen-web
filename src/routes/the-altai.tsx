@@ -23,10 +23,10 @@ export function TheAltaiPage() {
   return (
     <div style={{ minHeight: "100vh", paddingLeft: "max(24px, 7vw)", paddingRight: "max(24px, 7vw)" }}>
       <Header />
-      <main className="altai-section" style={{ paddingTop: "28vh", position: "relative" }}>
+      <main className="altai-section" style={{ paddingTop: "14vh", position: "relative" }}>
         <div
           className="hairline hairline-draw"
-          style={{ position: "absolute", top: "12vh", left: 0, right: 0 }}
+          style={{ position: "absolute", top: "6vh", left: 0, right: 0 }}
         />
         <p className="label-caps" style={{ color: "var(--foreground)", margin: 0, marginBottom: "1.75em" }}>
           The Altai
@@ -74,11 +74,11 @@ export function TheAltaiPage() {
         <p
           className="font-serif altai-closer"
           style={{
-            marginTop: "1.5em",
+            marginTop: "0.5em",
             marginBottom: 0,
             fontStyle: "italic",
             color: "var(--copper-bright)",
-            fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)",
+            fontSize: "clamp(1.15rem, 2.2vw, 1.75rem)",
             lineHeight: 1.2,
             letterSpacing: "-0.01em",
           }}
@@ -86,7 +86,7 @@ export function TheAltaiPage() {
           This is why we took the name.
         </p>
 
-        <div style={{ height: "20vh" }} />
+        <div style={{ height: "6vh" }} />
       </main>
 
       <footer style={{ marginTop: "8vh", paddingBottom: "4vh" }}>
@@ -108,7 +108,7 @@ export function TheAltaiPage() {
       <style>{`
         .altai-closer { white-space: nowrap; }
         @media (max-width: 640px) {
-          .altai-section { padding-top: 22vh; }
+          .altai-section { padding-top: 11vh; }
           .altai-closer { white-space: normal; }
         }
       `}</style>
