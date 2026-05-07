@@ -42,7 +42,7 @@ function TheAltaiPage() {
             fontWeight: 300,
             lineHeight: 0.98,
             letterSpacing: "-0.02em",
-            color: "var(--foreground)",
+            color: "#1f7a8c",
             margin: 0,
           }}
         >
