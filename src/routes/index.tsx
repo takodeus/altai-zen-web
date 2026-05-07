@@ -60,7 +60,7 @@ export function HomePage() {
             className="font-serif"
             style={{
               fontWeight: 300,
-              lineHeight: 0.98,
+              lineHeight: 1.05,
               letterSpacing: "-0.02em",
               color: "#5a8f99",
               margin: 0,
