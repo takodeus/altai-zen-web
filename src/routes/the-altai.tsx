@@ -31,9 +31,6 @@ function TheAltaiPage() {
           className="hairline hairline-draw"
           style={{ position: "absolute", top: "12vh", left: 0, right: 0 }}
         />
-        <div style={{ width: "96px", marginBottom: "1.75em", opacity: 0.8 }}>
-          <RidgeRule height={28} stroke="var(--accent)" />
-        </div>
         <p className="label-caps" style={{ color: "var(--accent)", margin: 0, marginBottom: "1.75em" }}>
           The Altai
         </p>

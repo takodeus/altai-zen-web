@@ -47,13 +47,13 @@ function HomePage() {
               left: "max(24px, 7vw)",
               right: "max(24px, 7vw)",
               height: "2px",
-              backgroundColor: "#6a8b9a",
+              backgroundColor: "#4ab8cc",
               transformOrigin: "left center",
             }}
           />
           <p
             className="label-caps"
-            style={{ color: "#6a8b9a", margin: 0, marginBottom: "1.75em" }}
+            style={{ color: "#4ab8cc", margin: 0, marginBottom: "1.75em" }}
           >
             A coordination layer
           </p>
@@ -73,7 +73,7 @@ function HomePage() {
             Autonomy downstream.
           </h1>
           <div style={{ width: "100%", maxWidth: "50ch", marginTop: "2.25em" }}>
-            <RidgeRule height={32} stroke="#6a8b9a" />
+            <RidgeRule height={32} stroke="#4ab8cc" />
           </div>
           <p
             className="font-sans"
