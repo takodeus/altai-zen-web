@@ -27,6 +27,20 @@
   --entrance-duration: 1.8s;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1f2326;
+    --foreground: #edeef0;
+    --accent: #4ab8cc;
+    --accent-bright: #4ab8cc;
+    --copper: #c69468;
+    --copper-bright: #c69468;
+    --border: rgba(237, 238, 240, 0.10);
+    --rule: rgba(237, 238, 240, 0.10);
+    --muted-foreground: rgba(237, 238, 240, 0.55);
+  }
+}
+
 @layer base {
   html {
     background-color: var(--background);
@@ -50,7 +64,7 @@
   }
 
   a:hover {
-    color: rgba(31, 35, 38, 0.70);
+    color: color-mix(in oklab, var(--foreground) 70%, transparent);
   }
 
   a:focus-visible {

@@ -72,28 +72,31 @@ function TheAltaiPage() {
             A decision made in the catchment can alter conditions a thousand kilometers away,
             generations later, in places that no longer remember where the water began.
           </p>
-          <p
-            className="font-serif"
-            style={{
-              marginTop: "4em",
-              fontStyle: "italic",
-              marginBottom: 0,
-              color: "#c9612a",
-              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
-              lineHeight: 1.2,
-              letterSpacing: "-0.01em",
-            }}
-          >
-            This is why we took the name.
-          </p>
         </section>
+
+        <p
+          className="font-serif altai-closer"
+          style={{
+            marginTop: "4em",
+            marginBottom: 0,
+            fontStyle: "italic",
+            color: "#c9612a",
+            fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)",
+            lineHeight: 1.2,
+            letterSpacing: "-0.01em",
+          }}
+        >
+          This is why we took the name.
+        </p>
 
         <div style={{ height: "20vh" }} />
       </main>
 
       <style>{`
+        .altai-closer { white-space: nowrap; }
         @media (max-width: 640px) {
           .altai-section { padding-top: 22vh; }
+          .altai-closer { white-space: normal; }
         }
       `}</style>
     </div>
