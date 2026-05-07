@@ -48,7 +48,7 @@ export function TheAltaiPage() {
         </h1>
 
         <div style={{ width: "100%", maxWidth: "50ch", marginTop: "2.25em" }}>
-          <RidgeRule height={32} stroke="var(--accent)" />
+          <RidgeRule height={32} stroke="var(--copper-bright)" />
         </div>
 
         <section style={{ marginTop: "2.5em", maxWidth: "50ch" }}>
@@ -102,8 +102,7 @@ export function TheAltaiPage() {
         </div>
       </div>
 
-      <footer style={{ marginTop: "4vh", paddingBottom: "4vh" }}>
-        <div className="hairline" style={{ marginBottom: "12px" }} />
+      <footer style={{ marginTop: "1vh", paddingBottom: "4vh" }}>
         <p
           className="font-sans"
           style={{

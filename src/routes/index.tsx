@@ -85,7 +85,7 @@ export function HomePage() {
             </span>
           </h1>
           <div style={{ width: "112%", maxWidth: "58ch", marginTop: "2.25em", marginLeft: "-6%" }}>
-            <RidgeRule height={32} stroke="#5a8f99" />
+            <RidgeRule height={32} stroke="var(--copper-bright)" />
           </div>
           <p
             className="font-serif"
@@ -117,29 +117,25 @@ export function HomePage() {
         </section>
       </main>
 
-      <div
-        style={{
-          marginTop: "8vh",
-          paddingLeft: "max(24px, 7vw)",
-          paddingRight: "max(24px, 7vw)",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div style={{ width: "100%", maxWidth: "50ch" }}>
-          <RiverRule height={32} stroke="var(--accent)" />
-        </div>
-      </div>
-
       <footer
         style={{
-          marginTop: "4vh",
+          marginTop: "8vh",
           paddingBottom: "4vh",
           paddingLeft: "max(24px, 7vw)",
           paddingRight: "max(24px, 7vw)",
         }}
       >
-        <div className="hairline" style={{ marginBottom: "16px" }} />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "16px",
+          }}
+        >
+          <div style={{ width: "100%", maxWidth: "50ch" }}>
+            <RiverRule height={32} stroke="var(--accent)" />
+          </div>
+        </div>
         <p
           className="font-serif"
           style={{
