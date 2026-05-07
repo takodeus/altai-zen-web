@@ -15,7 +15,8 @@
 :root {
   --background: #edeef0;
   --foreground: #1f2326;
-  --accent: #4a6b7a;
+  --accent: #1f7a8c;
+  --accent-bright: #4ab8cc;
   --border: rgba(31, 35, 38, 0.10);
   --rule: rgba(31, 35, 38, 0.10);
   --muted-foreground: rgba(31, 35, 38, 0.55);
@@ -56,7 +57,7 @@
   }
 
   ::selection {
-    background: rgba(74, 107, 122, 0.25);
+    background: rgba(31, 122, 140, 0.25);
     color: var(--foreground);
   }
 }
