@@ -22,12 +22,25 @@ export function TheAltaiPage() {
   });
 
   return (
-    <div style={{ minHeight: "100vh", paddingLeft: "max(24px, 7vw)", paddingRight: "max(24px, 7vw)" }}>
+    <div style={{ minHeight: "100vh" }}>
       <Header />
-      <main className="altai-section" style={{ paddingTop: "14vh", position: "relative" }}>
+      <main
+        className="altai-section"
+        style={{
+          paddingTop: "14vh",
+          paddingLeft: "max(24px, 7vw)",
+          paddingRight: "max(24px, 7vw)",
+          position: "relative",
+        }}
+      >
         <div
           className="hairline hairline-draw"
-          style={{ position: "absolute", top: "6vh", left: 0, right: 0 }}
+          style={{
+            position: "absolute",
+            top: "6vh",
+            left: "max(24px, 7vw)",
+            right: "max(24px, 7vw)",
+          }}
         />
         <p className="label-caps" style={{ color: "var(--foreground)", margin: 0, marginBottom: "1.75em" }}>
           The Altai
@@ -90,26 +103,23 @@ export function TheAltaiPage() {
         <div style={{ height: "6vh" }} />
       </main>
 
-      <div
-        style={{
-          marginTop: "8vh",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div style={{ width: "100%", maxWidth: "50ch" }}>
-          <RiverRule height={32} stroke="var(--accent)" />
-        </div>
+      <div style={{ marginTop: "8vh", paddingTop: "4vh", paddingBottom: "4vh" }}>
+        <RiverRule height={48} stroke="var(--accent)" />
       </div>
 
-      <footer style={{ marginTop: "1vh", paddingBottom: "4vh" }}>
+      <footer
+        style={{
+          paddingBottom: "4vh",
+          paddingLeft: "max(24px, 7vw)",
+          paddingRight: "max(24px, 7vw)",
+        }}
+      >
         <p
           className="font-sans"
           style={{
             fontSize: "12px",
             color: "var(--foreground)",
             opacity: 0.55,
-            textAlign: "center",
             margin: 0,
           }}
         >

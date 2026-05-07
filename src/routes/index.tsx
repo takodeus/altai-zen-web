@@ -32,7 +32,7 @@ export function HomePage() {
             background: "#1f2326",
             color: "#edeef0",
             paddingTop: "14vh",
-            paddingBottom: "16vh",
+            paddingBottom: "10vh",
             paddingLeft: "max(24px, 7vw)",
             paddingRight: "max(24px, 7vw)",
             position: "relative",
@@ -116,34 +116,40 @@ export function HomePage() {
             <span style={{ color: "var(--copper-bright)" }}>Altai works there.</span>
           </p>
         </section>
+
+        {/* River band — straddles the dark/light seam.
+            Top half is dark (extends the hero), bottom half is light.
+            The river SVG sits exactly on the boundary. */}
+        <div
+          style={{
+            background:
+              "linear-gradient(to bottom, #1f2326 0%, #1f2326 50%, var(--background) 50%, var(--background) 100%)",
+            display: "flex",
+            alignItems: "center",
+            paddingTop: "4vh",
+            paddingBottom: "4vh",
+          }}
+        >
+          <div style={{ width: "100%" }}>
+            <RiverRule height={48} stroke="var(--accent)" />
+          </div>
+        </div>
       </main>
 
       <footer
         style={{
-          marginTop: "8vh",
+          paddingTop: "4vh",
           paddingBottom: "4vh",
           paddingLeft: "max(24px, 7vw)",
           paddingRight: "max(24px, 7vw)",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "16px",
-          }}
-        >
-          <div style={{ width: "100%", maxWidth: "50ch" }}>
-            <RiverRule height={32} stroke="var(--accent)" />
-          </div>
-        </div>
         <p
           className="font-serif"
           style={{
             fontSize: "15px",
             fontStyle: "italic",
             color: "var(--copper-bright)",
-            textAlign: "center",
             margin: 0,
             marginBottom: "8px",
           }}
@@ -158,7 +164,6 @@ export function HomePage() {
             fontSize: "12px",
             color: "var(--foreground)",
             opacity: 0.55,
-            textAlign: "center",
             margin: 0,
           }}
         >
