@@ -1,71 +1,47 @@
-## Reading the reference
+Combined execution of all pending changes:
 
-The Cherre banner does three things at once:
+## 1. Header → "The Altai Group", links home
 
-1. A hand-drawn **mountain silhouette** sits as the visual anchor.
-2. A **dissolving network** (dots + lines) emerges from the ridge, encoding the "physical world → data" idea without a word of copy.
-3. A deep **gradient field** gives the whole thing atmosphere — dark to slightly darker, never flat.
+`src/components/Header.tsx`: change wordmark text from `Altai Group` to `The Altai Group`. Already wrapped in `<Link to="/">`, so it returns home from any route.
 
-That's a strong, literal expression of the same metaphor we're already using ("doctrine upstream, autonomy downstream", watershed, Altai). We can borrow the *structural idea* — terrain dissolving into network — without copying the execution (white-line-on-magenta would be off-brand for us).
+Also update `<title>` / `og:title` on `src/routes/index.tsx` to `The Altai Group`.
 
-## What I'd propose for the home page
+## 2. Replace the straight rule with a mountain-ridge divider
 
-One single motif, hero-right, sitting opposite the headline. Not a banner, not a background — an editorial illustration.
+On the home hero, the 1px slate-teal `<div>` rule sitting under the headline becomes a small inline SVG ridge:
 
-### The motif
+- One continuous 1px stroke in `var(--accent)`, full opacity.
+- Three asymmetric peaks, shallow, drawn in the same hand as the /the-altai glyph but stretched horizontally.
+- ~32px tall, `width: 100%; max-width: 50ch` matching the body column.
+- `preserveAspectRatio="none"` so it stretches like a rule.
+- No fill, no nodes, no animation, `aria-hidden="true"`.
 
-A single SVG, ~480px wide on desktop, ~280px on mobile:
+## 3. Remove the right-column network motif
 
-- **Left two-thirds**: a low, wide ridge profile drawn as one continuous 1px line in `var(--foreground)` at ~70% opacity — three peaks, asymmetric, in the spirit of the existing watershed glyph on /the-altai (same hand, larger scale).
-- **Right third**: the ridge's terminal slope dissolves into a sparse **network of dots and thin connecting lines** in `var(--accent)` (slate teal). ~25–35 nodes, hand-placed (not algorithmic-looking), connections varying in opacity from 100% near the ridge to 0% at the right edge.
-- No fill. No gradient. No shadow. Pure line work.
+Delete the `RidgeNetwork` component and `.hero-grid` / `.hero-motif` CSS from `src/routes/index.tsx`. Hero returns to single-column, left-aligned. The ridge now lives only as the divider.
 
-This keeps the cartographic register: it reads as a survey diagram, not a marketing illustration.
+## 4. Repeat the ridge on /the-altai
 
-### Layout change
+Extract the ridge into `src/components/RidgeRule.tsx` (shared). Use it in two places:
 
-Current hero is single-column, left-aligned. Move to a two-column composition on desktop (≥900px):
+- `src/routes/index.tsx` — as the divider under the headline (max-width 50ch, ~32px tall).
+- `src/routes/the-altai.tsx` — replace the existing 72×40 three-stroke watershed glyph above the "THE ALTAI" label with the same `RidgeRule`, sized small (width ~96px, height ~28px) so it still reads as a printer's mark, not a horizon line. Same drawing, two scales.
 
-```text
-┌───────────────────────────────────────────────────────┐
-│ ALTAI GROUP                                           │
-│                                                       │
-│                          ╱╲                           │
-│ A COORDINATION LAYER    ╱  ╲    ╱╲       · ·          │
-│                        ╱    ╲__╱  ╲___ · · · · ·      │
-│ Doctrine upstream.    ╱                 ·  ·  · ·     │
-│ Autonomy downstream.                       · ·        │
-│ ─────────────────                                     │
-│ A coordination layer for…                             │
-│                                                       │
-│ The hardest problems…                                 │
-└───────────────────────────────────────────────────────┘
-```
+## 5. Color-differentiate the home hero
 
-On mobile the motif stacks above the label, scaled down, same line weights.
+Wrap the home hero in a full-bleed inverted band — the only place on the site that flips palette.
 
-### Background
+- Band background: `#1f2326` (deep ink), text: `#edeef0` (cool stone).
+- Accent stays `#4a6b7a` slate teal — reads on both surfaces; bumped slightly to `#6a8b9a` for the ridge stroke inside the dark band so it remains visible.
+- Band extends edge-to-edge via negative horizontal margin, with matching inner padding to restore gutters.
+- Footer stays on the normal cool-stone surface, outside the band.
+- Header sits over the dark band on home only. Add a `theme?: "dark" | "light"` prop to `Header`; home passes `"dark"` and the wordmark renders in `#edeef0`. Default stays current behavior so /the-altai is unchanged.
 
-Stay on `#edeef0` cool stone. **Do not** add a gradient field — that would push us toward the "premium/cinematic" register the brief explicitly forbids. The reference uses gradient because it's a tech brand; we're a monograph. The motif provides all the visual interest the page needs.
+## Files touched
 
-If you want a *whisper* more depth, I'd add a single `radial-gradient` at maybe 4% opacity behind the motif only — barely perceptible, just enough to make the line work feel like it's sitting on paper rather than floating. Optional.
+- `src/components/Header.tsx` — text + theme prop.
+- `src/components/RidgeRule.tsx` — new shared SVG.
+- `src/routes/index.tsx` — meta title, remove network/grid, add ridge divider, wrap hero in inverted band, pass `theme="dark"` to Header.
+- `src/routes/the-altai.tsx` — swap glyph for small `RidgeRule`.
 
-### What I am explicitly *not* proposing
-
-- No photographs, no raster mountain art.
-- No magenta, no dark mode, no glow.
-- No animation on the motif (the existing entrance hairline stays as-is).
-- No motif on /the-altai — that page keeps its single small printer's-mark glyph. The home gets the larger composition; The Altai keeps the editorial punctuation. Two scales of the same visual idea.
-- No new copy, no new sections.
-
-### Implementation notes (technical)
-
-- Single inline SVG component in `src/routes/index.tsx`, `aria-hidden="true"`.
-- `viewBox` around `0 0 480 200`, `preserveAspectRatio="xMidYMid meet"`.
-- Ridge: one `<path>` with `stroke="currentColor"`, `stroke-width="1"`, container at `color: var(--foreground); opacity: 0.7`.
-- Network: group of `<circle r="1.5">` and `<line stroke-width="0.6">` in `stroke="var(--accent)"` / `fill="var(--accent)"`, each with its own opacity in the 0.25–1.0 range.
-- Hero section becomes `display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6vw;` above 900px, single column below.
-
----
-
-Want me to build it as described? Or would you rather see the motif slightly different — e.g. ridge in slate teal and network in foreground, or a denser network, or no two-column layout (motif sits below the headline instead of beside it)?
+Nothing else changes (copy, footer, type, /the-altai body all preserved).
