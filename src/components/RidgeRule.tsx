@@ -18,6 +18,14 @@ export function RidgeRule({
   style,
   preserveAspectRatio = "none",
 }: RidgeRuleProps) {
+  // Peaks (local minima of y in the path) — where sparkles emit from.
+  const peaks: Array<{ x: number; y: number; delay: string }> = [
+    { x: 151, y: 3, delay: "0s" },
+    { x: 312, y: 6, delay: "1.6s" },
+    { x: 389, y: 11, delay: "3.2s" },
+    { x: 233, y: 9, delay: "4.8s" },
+  ];
+
   return (
     <svg
       viewBox="0 0 480 32"
@@ -34,6 +42,31 @@ export function RidgeRule({
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
       />
+      {peaks.map((p, i) => (
+        <circle
+          key={i}
+          cx={p.x}
+          cy={p.y}
+          r={1.2}
+          fill={stroke}
+          style={{
+            transformBox: "fill-box",
+            transformOrigin: "center",
+            animation: `ridge-sparkle 6s ease-in-out ${p.delay} infinite`,
+            opacity: 0,
+          }}
+        />
+      ))}
+      <style>{`
+        @keyframes ridge-sparkle {
+          0%, 70%, 100% { opacity: 0; transform: scale(0.6); }
+          78% { opacity: 1; transform: scale(1.6); }
+          86% { opacity: 0.4; transform: scale(1); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          circle { animation: none !important; opacity: 0 !important; }
+        }
+      `}</style>
     </svg>
   );
 }
