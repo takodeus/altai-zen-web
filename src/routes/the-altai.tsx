@@ -92,6 +92,22 @@ function TheAltaiPage() {
         <div style={{ height: "20vh" }} />
       </main>
 
+      <footer style={{ marginTop: "8vh", paddingBottom: "4vh" }}>
+        <div className="hairline" style={{ marginBottom: "12px" }} />
+        <p
+          className="font-sans"
+          style={{
+            fontSize: "12px",
+            color: "var(--foreground)",
+            opacity: 0.55,
+            textAlign: "center",
+            margin: 0,
+          }}
+        >
+          © 2026 The Altai Group
+        </p>
+      </footer>
+
       <style>{`
         .altai-closer { white-space: nowrap; }
         @media (max-width: 640px) {
