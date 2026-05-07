@@ -47,7 +47,7 @@ function HomePage() {
               left: "max(24px, 7vw)",
               right: "max(24px, 7vw)",
               height: "2px",
-              backgroundColor: "#4ab8cc",
+              backgroundColor: "#5a8f99",
               transformOrigin: "left center",
             }}
           />
@@ -55,38 +55,50 @@ function HomePage() {
             className="label-caps"
             style={{ color: "#edeef0", margin: 0, marginBottom: "1.75em" }}
           >
-            A coordination layer
+            Coordination layer
           </p>
           <h1
             className="font-serif"
             style={{
-              fontSize: "clamp(3.25rem, 8vw, 5.75rem)",
               fontWeight: 300,
               lineHeight: 0.98,
               letterSpacing: "-0.02em",
-              color: "#4ab8cc",
+              color: "#5a8f99",
               margin: 0,
             }}
           >
-            Doctrine upstream.
-            <br />
-            Autonomy downstream.
+            <span
+              style={{
+                display: "block",
+                fontSize: "clamp(3.5rem, 8.5vw, 6.15rem)",
+                fontWeight: 360,
+              }}
+            >
+              Doctrine upstream.
+            </span>
+            <span
+              style={{
+                display: "block",
+                fontSize: "clamp(3.25rem, 8vw, 5.75rem)",
+              }}
+            >
+              Autonomy downstream.
+            </span>
           </h1>
-          <div style={{ width: "100%", maxWidth: "50ch", marginTop: "2.25em" }}>
-            <RidgeRule height={32} stroke="#4ab8cc" />
+          <div style={{ width: "112%", maxWidth: "58ch", marginTop: "2.25em", marginLeft: "-6%" }}>
+            <RidgeRule height={32} stroke="#5a8f99" />
           </div>
           <p
             className="font-sans"
             style={{
-              marginTop: "1.5em",
+              marginTop: "3.25em",
               fontSize: "1.05rem",
               lineHeight: 1.6,
               maxWidth: "50ch",
               color: "#edeef0",
             }}
           >
-            A coordination layer for real assets investors and operators adapting to machine-speed
-            environments.
+            For real assets investors and operators operating at machine speed.
           </p>
           <p
             className="font-serif"
@@ -100,7 +112,7 @@ function HomePage() {
           >
             The hardest problems in enterprise AI are not problems of model capability. They are
             problems of authority, memory, and coordination.{" "}
-            <span style={{ color: "var(--copper-bright)" }}>Altai works on those.</span>
+            <span style={{ color: "var(--copper-bright)" }}>Altai works there.</span>
           </p>
         </section>
       </main>
