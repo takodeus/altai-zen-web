@@ -28,7 +28,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --background: #1f2326;
     --foreground: #edeef0;
     --accent: #4ab8cc;
@@ -39,6 +39,18 @@
     --rule: rgba(237, 238, 240, 0.10);
     --muted-foreground: rgba(237, 238, 240, 0.55);
   }
+}
+
+:root[data-theme="dark"] {
+  --background: #1f2326;
+  --foreground: #edeef0;
+  --accent: #4ab8cc;
+  --accent-bright: #4ab8cc;
+  --copper: #c69468;
+  --copper-bright: #c69468;
+  --border: rgba(237, 238, 240, 0.10);
+  --rule: rgba(237, 238, 240, 0.10);
+  --muted-foreground: rgba(237, 238, 240, 0.55);
 }
 
 @layer base {

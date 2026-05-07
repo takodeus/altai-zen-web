@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { ThemeToggle } from "./ThemeToggle";
 
 type HeaderProps = {
   theme?: "light" | "dark";
@@ -15,6 +16,9 @@ export function Header({ theme = "light" }: HeaderProps) {
         paddingTop: "max(20px, 2.5vh)",
         paddingBottom: "max(16px, 2vh)",
         background,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
       }}
     >
       <Link
@@ -30,6 +34,7 @@ export function Header({ theme = "light" }: HeaderProps) {
       >
         The Altai Group
       </Link>
+      <ThemeToggle color={color} />
     </header>
   );
 }
