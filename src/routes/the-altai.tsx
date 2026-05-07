@@ -42,10 +42,6 @@ export function TheAltaiPage() {
             right: "max(24px, 7vw)",
           }}
         />
-        <p className="label-caps" style={{ color: "var(--foreground)", margin: 0, marginBottom: "1.75em" }}>
-          The Altai
-        </p>
-
         <h1
           className="font-serif"
           style={{
