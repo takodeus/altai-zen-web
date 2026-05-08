@@ -28,15 +28,6 @@ const heroStyle: React.CSSProperties = {
   margin: 0,
 };
 
-const sectionNumStyle: React.CSSProperties = {
-  fontFamily: "var(--font-sans)",
-  fontSize: "11px",
-  letterSpacing: "0.18em",
-  textTransform: "uppercase",
-  color: "var(--muted-foreground)",
-  margin: "0 0 0.6em 0",
-};
-
 const sectionTitleStyle: React.CSSProperties = {
   fontFamily: "var(--font-serif)",
   fontWeight: 500,
@@ -143,9 +134,8 @@ export function TheWorkPage() {
           <p style={bodyParaStyle}>That is the layer Altai builds.</p>
         </section>
 
-        {/* I. The category. */}
+        {/* The category. */}
         <section style={{ marginTop: "5em", maxWidth: "56ch" }}>
-          <p style={sectionNumStyle}>I.</p>
           <h2 style={sectionTitleStyle}>The category.</h2>
           <p style={bodyStyle}>
             Altai builds the interpretive layer between the firm's systems of
@@ -175,9 +165,8 @@ export function TheWorkPage() {
           <RiverFragment />
         </div>
 
-        {/* II. The unit. */}
+        {/* The unit. */}
         <section style={{ maxWidth: "56ch" }}>
-          <p style={sectionNumStyle}>II.</p>
           <h2 style={sectionTitleStyle}>The unit.</h2>
           <p style={bodyStyle}>The layer is built by a forward deployed pod.</p>
           <p style={bodyParaStyle}>
@@ -218,15 +207,17 @@ export function TheWorkPage() {
           <RiverFragment />
         </div>
 
-        {/* III. The arrangement. */}
+        {/* The arrangement. */}
         <section style={{ maxWidth: "56ch" }}>
-          <p style={sectionNumStyle}>III.</p>
           <h2 style={sectionTitleStyle}>The arrangement.</h2>
           <p style={bodyStyle}>Pods are subscribed, not staffed.</p>
           <p style={bodyParaStyle}>
             The firm does not contract hours, seats, or full-time
             equivalents. It subscribes to a pod. The pod is the unit of
             measure, the unit of accountability, and the unit of work.
+          </p>
+          <p style={bodyParaStyle}>
+            Through the pod, to the outcomes.
           </p>
           <p style={bodyParaStyle}>
             A firm runs as many pods as the work requires. Different domains
