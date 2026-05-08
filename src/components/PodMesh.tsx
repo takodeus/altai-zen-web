@@ -66,9 +66,10 @@ export function PodMesh() {
   );
 
   const phaseLabelStyle = {
-    fontSize: "13px",
-    fontWeight: 600,
-    letterSpacing: "0.16em",
+    fontFamily: "var(--font-mono)",
+    fontSize: "12px",
+    fontWeight: 500,
+    letterSpacing: "0.18em",
     textTransform: "uppercase" as const,
     fill: reduce ? "var(--copper-bright)" : "var(--foreground)",
     opacity: reduce ? 1 : 0.15,
@@ -85,11 +86,8 @@ export function PodMesh() {
       }}
     >
       <div
-        className="font-sans"
+        className="t-eyebrow"
         style={{
-          fontSize: "10px",
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
           color: "var(--copper-bright)",
           marginBottom: "1.4em",
         }}
@@ -247,15 +245,16 @@ export function PodMesh() {
                 }}
               />
               <text
-                className="font-sans pod-plate-text"
+                className="pod-plate-text"
                 x={v.x}
                 y={v.y}
                 textAnchor="middle"
                 dominantBaseline="middle"
                 style={{
-                  fontSize: "13px",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "12px",
                   fontWeight: 500,
-                  letterSpacing: "0.02em",
+                  letterSpacing: "0.04em",
                   fill: "var(--foreground)",
                   animation: reduce
                     ? "none"

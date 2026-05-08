@@ -21,17 +21,7 @@ export function Header({ theme = "light" }: HeaderProps) {
         justifyContent: "space-between",
       }}
     >
-      <Link
-        to="/"
-        className="font-sans"
-        style={{
-          fontSize: "15px",
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          fontWeight: 500,
-          color,
-        }}
-      >
+      <Link to="/" className="t-wordmark" style={{ color }}>
         The Altai Group
       </Link>
       <ThemeToggle color={color} />
