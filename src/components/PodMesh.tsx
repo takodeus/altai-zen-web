@@ -37,15 +37,15 @@ export function PodMesh() {
 
   // Discipline labels, in pentagon-vertex order (clockwise from top).
   const disciplines = [
-    "Product",
+    "Product Management",
     "AI Architecture",
     "Data Science",
     "Data Engineering",
-    "Domain",
+    "Domain Experts",
   ];
 
   // Plate dimensions.
-  const plateW = 132;
+  const plateW = 168;
   const plateH = 38;
 
   // Full mesh: every vertex connected to every other (10 edges).
