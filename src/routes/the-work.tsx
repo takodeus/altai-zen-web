@@ -187,6 +187,11 @@ export function TheWorkPage() {
             Composition adjusts to the engagement.
           </p>
           <p style={bodyParaStyle}>
+            The pod is the Arban inside the institution. Five disciplines
+            instead of ten riders, but the same structure: governing
+            principles travel with the unit, authority lives at the work.
+          </p>
+          <p style={bodyParaStyle}>
             The pod operates as a complete decision unit. Observation,
             orientation, decision, and action remain coupled inside the
             work itself. Authority is constituted where the work is done.

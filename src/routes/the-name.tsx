@@ -71,7 +71,7 @@ export function TheNamePage() {
           </p>
           <p className="font-serif" style={{ marginTop: "1.5em", marginBottom: 0 }}>
             Major river systems originate in the Altai and flow outward across thousands of
-            kilometers, shaping the hydrology of regions far larger than the mountains themselves.
+            kilometers, shaping conditions far beyond the mountains themselves.
             Communities downstream may never see the source directly, yet remain dependent on the
             conditions it creates.
           </p>
@@ -79,21 +79,29 @@ export function TheNamePage() {
             A decision made in the catchment can alter conditions a thousand kilometers away,
             generations later, in places that no longer remember where the water began.
           </p>
+          <p className="font-serif" style={{ marginTop: "2em", marginBottom: 0 }}>
+            The Altai is also a homeland. The operating unit this firm is built
+            around was constituted there centuries ago: the Arban. Ten riders
+            carrying authority with them, acting on first contact, coordinating
+            across distance without waiting for instruction to travel back to
+            the center.
+          </p>
         </section>
 
         <p
           className="font-serif altai-closer"
           style={{
-            marginTop: "1.5em",
+            marginTop: "2.5em",
             marginBottom: 0,
             fontStyle: "italic",
             color: "var(--copper-bright)",
             fontSize: "clamp(1.15rem, 2.2vw, 1.75rem)",
-            lineHeight: 1.2,
+            lineHeight: 1.3,
             letterSpacing: "-0.01em",
           }}
         >
-          This is why we are Altai.
+          <span style={{ display: "block" }}>The name is the watershed.</span>
+          <span style={{ display: "block" }}>The work is the inheritance.</span>
         </p>
 
         <div style={{ height: "6vh" }} />
@@ -125,10 +133,8 @@ export function TheNamePage() {
       </footer>
 
       <style>{`
-        .altai-closer { white-space: nowrap; }
         @media (max-width: 640px) {
           .name-section { padding-top: 11vh; }
-          .altai-closer { white-space: normal; }
         }
       `}</style>
     </div>
