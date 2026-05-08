@@ -173,22 +173,21 @@ export function TheWorkPage() {
         {/* The unit. */}
         <section style={{ maxWidth: "56ch" }}>
           <h2 style={sectionTitleStyle}>The unit.</h2>
-          <p style={bodyStyle}>The layer is built by a forward deployed pod.</p>
+          <p style={bodyStyle}>The layer is built by a pod inside the firm.</p>
           <p style={bodyParaStyle}>
-            Five disciplines, one unit. Domain. Data engineering. Data
-            science. AI architecture. Product. The pod composes deep
-            expertise across the business, the technology, and the data.
-            Composition adjusts to the engagement.
+            The pod is composed of the disciplines the problem requires.
+            Business. Technology. Data. The pod composes deep expertise
+            across each. Composition adjusts to the problem.
           </p>
           <p style={bodyParaStyle}>
-            The pod is the Arban inside the institution. Five disciplines
-            instead of ten riders, but the same structure: governing
-            principles travel with the unit, authority lives at the work.
+            The pod is the Arban inside the institution. Different
+            composition, same structure: governing principles travel with
+            the unit, and the unit acts.
           </p>
           <p style={bodyParaStyle}>
             The pod operates as a complete decision unit. Observation,
             orientation, decision, and action remain coupled inside the
-            work itself. Authority is constituted where the work is done.
+            work itself. The unit holds them all.
           </p>
         </section>
 
@@ -203,7 +202,7 @@ export function TheWorkPage() {
             engineering team a firm might engage. The pod does not produce
             recommendations for someone else to act on. It does not redesign
             workflows for the firm to operate. It runs the loop inside the
-            firm, with authority to act, and the work it does is what the
+            firm, with the judgment to act, and the work it does is what the
             firm would otherwise have to build itself.
           </p>
         </section>
@@ -228,7 +227,7 @@ export function TheWorkPage() {
             A firm runs as many pods as the work requires. Different domains
             call for different compositions. A capital markets pod is not a
             portfolio operations pod. The subscription is structured for each
-            pod separately, against the engagement it is constituted for.
+            pod separately, against the work it is built around.
           </p>
           <p style={bodyParaStyle}>
             When the work is done, the subscription ends. When the work

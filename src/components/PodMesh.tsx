@@ -280,8 +280,8 @@ export function PodMesh() {
           opacity: 0.85,
         }}
       >
-        Five disciplines, one unit. Authority is constituted at the pod. The
-        loop runs continuously, inside the unit, against the firm{"'"}s context.
+        The pod is composed for the problem. The loop runs continuously.
+        Judgment and action live inside it.
       </p>
 
       <style>{`
