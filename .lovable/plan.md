@@ -1,70 +1,75 @@
-## What's there now
+## Font audit
 
-`RiverFragment` (`src/components/RiverFragment.tsx`) is the section divider used between blocks on `/the-doctrine` and `/the-work`. It draws two near-parallel teal curves (~200×24px), both 0.9px stroke weight, both gently undulating left → right with similar arc directions.
+### Currently loaded
+- **Cormorant Garamond** (300, 400, 500, 400 italic) — body + display serif
+- **Hanken Grotesk** (400, 500) — UI / label sans
+- Stack fallbacks reference "Ivar" and "Suisse Intl" but neither is loaded — dead aliases
 
-**Why it underwhelms today:**
-- The two curves run almost parallel and almost the same length, so the mark reads as a generic squiggle rather than as a deliberate brand element.
-- It uses no copper, so it has no visual link to the hero `RidgeRule` (copper) or the brand identity.
-- Stroke weight (0.9) is so light it nearly disappears at standard zoom and on the dark theme.
-- It doesn't echo the asymmetric three-flow logic of `RiverRule` (the closing mark on every page) — it feels like an unrelated motif rather than a compressed quotation of the river.
-- It sits dead-centered with no anchor mark, so its role as a "turn" is purely decorative.
+### Where type lives
+- `src/styles.css` — defines `--font-serif`, `--font-sans`, `body` defaults, `.label-caps`, `.font-serif`, `.font-sans`
+- `src/routes/index.tsx` — hero (clamp 3.5–6.15rem, weight 360), kicker label-caps, body 1.15rem, closer 1.25–1.65rem, footer 15px serif + 12px sans
+- `src/routes/the-doctrine.tsx` and `src/routes/the-work.tsx` — near-identical local `style` constants (eyebrow 11px sans, h1 2.6–4.6rem serif 360, h2 1.6–2.2rem serif 500, body 1.1rem serif, closer 1.25–1.65rem serif)
+- `src/routes/the-name.tsx` — h1 3.25–5.75rem serif 300, body inherited, closer 1.25–1.65rem
+- `src/components/Header.tsx` — wordmark 15px sans 500, tracking 0.14em
+- `src/components/PodMesh.tsx` — 13px sans 600 tracking 0.16em (node labels), 10px sans (annotation)
+- `src/components/ui/*` — shadcn defaults (text-sm font-medium / font-semibold). Not used on marketing pages.
 
-## Five directions to consider
+### Findings
 
-Ranked roughly by ambition. Pick one (or layered combinations).
+1. **Weight inconsistency on the hero serif.** Index uses `360`, doctrine/work h1 uses `360`, the-name h1 uses `300`. Three near-identical headlines, three different weights. Cormorant doesn't ship a 360 — browsers synthesize, which thins the strokes inconsistently across OSes.
+2. **Font sizes are scattered as raw clamps and pixel values across files.** No scale. Eyebrow appears as both `11px` (doctrine/work) and `0.6rem` (`.label-caps`) and `12px` (footers) and `13px`/`10px` (PodMesh). Five sizes for the same role.
+3. **Letter-spacing values for caps drift**: `0.14em` (header), `0.16em` (mesh), `0.18em` (eyebrows/label-caps). Three values for what reads as one role.
+4. **Closer paragraph style is duplicated verbatim** in 4 files (`clamp(1.25rem, 2.4vw, 1.65rem)` + `letterSpacing: -0.01em` + serif). Same for h1, h2, body, eyebrow.
+5. **Dead font fallbacks.** "Ivar" and "Suisse Intl" are paid fonts not loaded — they never resolve and just bloat the stack string.
+6. **Body font-size is fixed at 17px**, doesn't respond to viewport. Long-form on `the-name` reads tight on small screens, loose on ultrawide.
+7. **Cormorant 400 italic is loaded but never used** in app code (verified — no `italic`, `<em>`, or `font-style` references in routes). Wasted ~20KB.
+8. **Hanken Grotesk is fine as a working choice but is overexposed** — same default Google pairing seen on many startup sites. The brand voice (Altai, doctrine, river/ridge motifs) deserves something with more character at the small caps role where it shows the most.
 
-### 1. "Quotation of the river" (recommended — minimal, principled)
-Make the fragment a true compressed quote of the closing `RiverRule`: same three-flow asymmetry, same proportions, just shorter. Upper branch dominant and long, middle branch direct, lower branch peels off late and short. Same teal, same 0.9 stroke. Adds a tiny copper dot at the source point (left edge) as a "section pivot" marker — echoes the copper hero rule without competing.
+### Proposed optimization
 
-- Pros: cheapest change; ties divider to the page-close mark and the brand's copper signature; reinforces the river-as-propagation metaphor instead of being decoration.
-- Cons: subtle; the change reads as "more intentional" rather than dramatically different.
+A two-part change: **(A) consolidate type into a real scale + tokens** so duplication disappears, **(B) one targeted font swap** to lift brand distinctiveness.
 
-### 2. Asymmetric counter-flow
-Keep two branches, but reverse one: upper flows left → right, lower flows right → left (drawn with a subtle taper so direction reads). Suggests two streams meeting at the section turn.
+#### A. Type tokens + utility classes (in `src/styles.css`)
 
-- Pros: communicates "two threads of the argument converging here," which fits a section break.
-- Cons: requires gradient or taper to make direction legible, more SVG complexity.
+Add a documented type scale as CSS variables and matching utility classes. Touch only `src/styles.css` plus the four route files + Header + PodMesh to switch their inline styles to the utilities.
 
-### 3. Centered confluence mark
-Two short curves that converge into a single point at the horizontal center, then diverge back out — visually a braided "knot" or pinch. Optional small copper diamond/dot at the pinch point.
+```text
+Role          Token / class            Size                                Weight   Tracking
+display       --type-display / .t-display    clamp(3.25rem, 8vw, 6.15rem)   400      -0.02em
+h1 (section)  --type-h1 / .t-h1              clamp(2.6rem, 6.5vw, 4.6rem)   400      -0.02em
+h2            --type-h2 / .t-h2              clamp(1.6rem, 3.2vw, 2.2rem)   500      -0.01em
+lede / closer --type-lede / .t-lede          clamp(1.25rem, 2.4vw, 1.65rem) 400      -0.01em
+body          --type-body / .t-body          clamp(1rem, 0.95rem + 0.2vw, 1.15rem)  400  0
+small         --type-small / .t-small        0.9rem                          400      0
+eyebrow       --type-eyebrow / .t-eyebrow    0.6875rem (11px)                500      0.18em uppercase sans
+wordmark      --type-wordmark / .t-wordmark  0.9375rem (15px)                500      0.18em uppercase sans
+```
 
-- Pros: most graphically distinctive; gives the divider a clear focal point.
-- Cons: more decorative; risks competing with the hero ridge.
+Decisions baked in:
+- Headline weight standardized at **400** (the real Cormorant cut), no synthesized 300/360.
+- One eyebrow style replaces five variants. Header wordmark aligns its tracking to 0.18em with the eyebrows so caps look like one family.
+- Body becomes fluid (1rem → 1.15rem).
+- Drop `italic 400` from the Google Fonts URL until a real use case appears.
+- Drop dead "Ivar" / "Suisse Intl" fallback names.
 
-### 4. Single river line + copper tick
-One teal curve (the river), with a single short copper tick mark crossing it at the left third — like a survey mark on a map. Most editorial.
+#### B. One font swap (recommendation, not bundled)
 
-- Pros: strong editorial restraint; very on-brand for a topographic identity system.
-- Cons: biggest visual departure; loses the "two-branch" quality that ties to RiverFragment's current role.
+Keep Cormorant Garamond for headlines and body — it already carries the editorial voice. Replace **Hanken Grotesk** with one of:
 
-### 5. Status quo + weight bump only
-Just bump stroke from 0.9 → 1.4 and lengthen one branch ~15% so the asymmetry reads. No copper, no shape change.
+1. **Inter Tight** — closer letterforms, modern, free, very legible at 11px caps. Safe.
+2. **National 2 Narrow** (Klim) — paid, but the narrow caps would feel custom against the wide serif. Best brand fit if budget allows.
+3. **GT America Mono / JetBrains Mono** — for eyebrow/labels only, leaves Hanken for nothing → drop the sans entirely. Editorial + mono is a strong, distinctive pairing and matches the "doctrine / OODA / pod mesh" technical undertone.
 
-- Pros: zero risk.
-- Cons: doesn't address the core "feels generic" problem.
+Recommendation: **Option 3 (mono for labels, no neutral sans)** — most differentiated, removes a font family rather than swapping one for another, and reinforces the analytical brand voice. JetBrains Mono is free.
 
-## Recommendation
+If you'd rather stay neutral, Option 1 is the lowest-risk swap.
 
-**Direction 1 ("quotation of the river") with a copper source dot.** It's the smallest change that actually fixes the underlying issues: it ties the divider to the page-closing river, introduces a controlled sliver of copper that connects to the hero ridge, and makes the asymmetry intentional. If after seeing it you want more presence, layer in Direction 2's counter-flow on top.
+### Out of scope
+- Color, spacing, layout, animation
+- shadcn/ui defaults (not used on marketing pages)
+- Any route content changes; only typography style attributes get migrated to the new utilities
 
-If you want a bolder, more graphic divider (option 3 or 4), say which and I'll plan that instead.
-
-## Technical sketch (Direction 1)
-
-Edit only `src/components/RiverFragment.tsx`. No new tokens, no usage-site changes.
-
-1. Replace the two near-parallel paths with three paths derived from `RiverRule`'s geometry, scaled to the fragment's 200-wide viewBox:
-   - **Source stub** (`M 0 12 L 22 12`) — short entry on the left.
-   - **Upper branch** — long, wide arc from `(22,12)` drifting up to ~y=4 then settling at the right edge around y=5.
-   - **Lower branch** — peels off the source later (~x=80), short, drops to y=18.
-   - (Skip the middle branch — two visible branches keeps the fragment compact and readable at small size.)
-2. Add a small copper dot at the source point: `<circle cx={4} cy={12} r={1.6} fill="var(--copper-bright)" />`.
-3. Bump default `strokeWidth` from 0.9 → 1.1 for slightly more presence without losing the editorial feel.
-4. Keep all existing props (`width`, `height`, `stroke`, `strokeWidth`, `style`) and defaults so the four call sites in `the-doctrine.tsx` and `the-work.tsx` need no changes.
-5. `aria-hidden="true"` stays.
-
-## Out of scope
-
-- `RiverRule` (closing mark on every page) and `RidgeRule` (hero mark) stay untouched.
-- No changes to spacing, alignment, or the routes that render the fragment.
-- No new color tokens.
+### Open questions
+1. Font swap appetite: keep Hanken, switch to Inter Tight, or go to a mono for labels (recommended)?
+2. OK to standardize headline weight at 400 across all three pages (today: 300 / 360 / 360)?
+3. OK to remove the loaded-but-unused Cormorant italic 400?
