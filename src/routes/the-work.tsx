@@ -148,6 +148,11 @@ export function TheWorkPage() {
             meaning moves.
           </p>
           <p style={bodyParaStyle}>
+            Once the layer exists, agents can act. Their autonomy is a
+            property of the layer they reason against, not of the agent
+            itself.
+          </p>
+          <p style={bodyParaStyle}>
             The unit of work is not a recommendation, an integrated workflow,
             or a seat inside the firm. It is the governed layer the agents
             must reason against. The semantic governance, interpretive
