@@ -20,7 +20,7 @@ const eyebrowStyle: React.CSSProperties = {
 
 const heroStyle: React.CSSProperties = {
   fontFamily: "var(--font-serif)",
-  fontWeight: 360,
+  fontWeight: 300,
   fontSize: "clamp(2.6rem, 6.5vw, 4.6rem)",
   lineHeight: 1.05,
   letterSpacing: "-0.02em",

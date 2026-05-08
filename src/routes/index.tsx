@@ -70,7 +70,7 @@ export function HomePage() {
               style={{
                 display: "block",
                 fontSize: "clamp(3.5rem, 8.5vw, 6.15rem)",
-                fontWeight: 360,
+                fontWeight: 300,
               }}
             >
               Doctrine upstream.
