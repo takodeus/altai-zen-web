@@ -139,7 +139,12 @@ export function HomePage() {
               color: "var(--copper-bright)",
             }}
           >
-            The doctrine sits upstream of this.
+            <Link
+              to="/the-doctrine"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              The doctrine sits upstream of this.
+            </Link>
           </p>
         </section>
 

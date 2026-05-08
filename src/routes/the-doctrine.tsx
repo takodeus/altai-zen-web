@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import { RidgeRule } from "../components/RidgeRule";
 import { RiverRule } from "../components/RiverRule";
@@ -241,7 +242,12 @@ export function TheDoctrinePage() {
           }}
         >
           <p style={closingLineStyle}>
-            Systems forget. That is why AI stalls.
+            <Link
+              to="/the-work"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              The work is the layer.
+            </Link>
           </p>
         </div>
 
