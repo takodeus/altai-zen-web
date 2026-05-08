@@ -126,7 +126,7 @@ export function HomePage() {
             }}
           >
             Agents deployed onto that architecture cannot act. They produce
-            output no one can trace, and the pilot stalls.
+            output no one can trace.
           </p>
           <p
             className="font-serif"
