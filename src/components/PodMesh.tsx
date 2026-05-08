@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * The Arban Pod.
@@ -56,9 +56,14 @@ export function PodMesh() {
     }
   }
 
-  // Edge stagger: each line has its own pulse delay so the mesh breathes
-  // around the network rather than blinking in unison.
-  const edgeDelays = useRef(edges.map((_, k) => (k * 0.6) % 6));
+  // Coordinated mesh wave: vertices light up clockwise around the pentagon;
+  // each edge fires when the earlier of its two endpoints activates.
+  const meshDuration = 8; // seconds
+  const vertexStep = 1.2; // seconds between adjacent vertices
+  const vertexDelays = vertices.map((_, i) => i * vertexStep);
+  const edgeDelaysList = edges.map(([a, b]) =>
+    Math.min(vertexDelays[a], vertexDelays[b]),
+  );
 
   const phaseLabelStyle = {
     fontSize: "13px",
@@ -110,7 +115,7 @@ export function PodMesh() {
           aria-label="The Arban Pod: five disciplines forming a peer mesh, with an OODA loop running continuously inside."
           role="img"
         >
-          {/* Mesh: ten peer connections between five pentagon vertices */}
+          {/* Mesh: ten peer connections that light up as the wave reaches them */}
           {edges.map(([a, b], k) => (
             <line
               key={`edge-${k}`}
@@ -123,10 +128,10 @@ export function PodMesh() {
               strokeDasharray="3 4"
               fill="none"
               style={{
-                opacity: 0.55,
+                opacity: reduce ? 0.55 : 0.2,
                 animation: reduce
                   ? "none"
-                  : `pod-mesh-pulse 6s ease-in-out ${edgeDelays.current[k]}s infinite`,
+                  : `pod-edge-pulse ${meshDuration}s ease-in-out ${edgeDelaysList[k]}s infinite`,
               }}
             />
           ))}
@@ -208,12 +213,18 @@ export function PodMesh() {
                 width={plateW}
                 height={plateH}
                 rx={2}
+                className="pod-plate-rect"
                 fill="var(--background)"
                 stroke="var(--border)"
                 strokeWidth={1}
+                style={{
+                  animation: reduce
+                    ? "none"
+                    : `pod-plate-rect ${meshDuration}s ease-in-out ${vertexDelays[i]}s infinite`,
+                }}
               />
               <text
-                className="font-sans"
+                className="font-sans pod-plate-text"
                 x={v.x}
                 y={v.y}
                 textAnchor="middle"
@@ -223,6 +234,9 @@ export function PodMesh() {
                   fontWeight: 500,
                   letterSpacing: "0.02em",
                   fill: "var(--foreground)",
+                  animation: reduce
+                    ? "none"
+                    : `pod-plate-text ${meshDuration}s ease-in-out ${vertexDelays[i]}s infinite`,
                 }}
               >
                 {disciplines[i]}
@@ -248,27 +262,48 @@ export function PodMesh() {
       </p>
 
       <style>{`
-        @keyframes pod-mesh-pulse {
-          0%, 100% { opacity: 0.55; }
-          50% { opacity: 1; }
+        @keyframes pod-edge-pulse {
+          0%   { opacity: 0.18; }
+          8%   { opacity: 0.95; }
+          18%  { opacity: 0.5; }
+          75%  { opacity: 0.35; }
+          85%  { opacity: 0.9; }
+          95%  { opacity: 0.35; }
+          100% { opacity: 0.18; }
+        }
+        @keyframes pod-plate-rect {
+          0%, 100% { stroke: var(--border); stroke-width: 1; }
+          8%, 18%  { stroke: var(--accent); stroke-width: 1.5; }
+          85%      { stroke: var(--accent); stroke-width: 1.5; }
+        }
+        @keyframes pod-plate-text {
+          0%, 100% { fill: var(--foreground); }
+          8%, 18%  { fill: var(--accent); }
+          85%      { fill: var(--accent); }
         }
         @keyframes pod-arc-travel {
           from { transform: rotate(-90deg); }
           to { transform: rotate(270deg); }
         }
+        /* Peak at 0% so animation-delay aligns directly with the arc's
+           leading-edge arrival time at each label. */
         @keyframes pod-label-pulse {
-          0% { opacity: 0.15; fill: var(--foreground); }
-          5% { opacity: 1; fill: var(--accent); }
-          15% { opacity: 0.9; fill: var(--accent); }
-          25% { opacity: 0.15; fill: var(--foreground); }
+          0%   { opacity: 1;    fill: var(--accent); }
+          12%  { opacity: 0.9;  fill: var(--accent); }
+          22%  { opacity: 0.15; fill: var(--foreground); }
           100% { opacity: 0.15; fill: var(--foreground); }
         }
-        .pod-phase-observe { animation: pod-label-pulse 6s linear infinite; animation-delay: 0s; }
-        .pod-phase-orient { animation: pod-label-pulse 6s linear infinite; animation-delay: -4.5s; }
-        .pod-phase-decide { animation: pod-label-pulse 6s linear infinite; animation-delay: -3s; }
-        .pod-phase-act { animation: pod-label-pulse 6s linear infinite; animation-delay: -1.5s; }
+        /* Arc: 6s clockwise from top. Leading edge passes OBSERVE at 0s,
+           ORIENT at 1.5s, DECIDE at 3s, ACT at 4.5s. Negative delay = phase
+           offset within the loop. */
+        .pod-phase-observe { animation: pod-label-pulse 6s linear infinite;  animation-delay: 0s; }
+        .pod-phase-orient  { animation: pod-label-pulse 6s linear infinite;  animation-delay: -4.5s; }
+        .pod-phase-decide  { animation: pod-label-pulse 6s linear infinite;  animation-delay: -3s; }
+        .pod-phase-act     { animation: pod-label-pulse 6s linear infinite;  animation-delay: -1.5s; }
         @media (prefers-reduced-motion: reduce) {
-          .pod-phase-label { animation: none !important; }
+          .pod-phase-label,
+          .pod-plate-rect,
+          .pod-plate-text { animation: none !important; }
         }
       `}</style>
     </div>
