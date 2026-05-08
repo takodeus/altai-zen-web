@@ -3,16 +3,16 @@ import { RidgeRule } from "../components/RidgeRule";
 import { RiverRule } from "../components/RiverRule";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
-export function TheAltaiPage() {
+export function TheNamePage() {
   useDocumentMeta({
-    title: "The Altai \u2014 The Altai Group",
+    title: "The Name \u2014 The Altai Group",
     meta: [
       {
         name: "description",
         content:
           "The Altai is among the oldest mountain systems in Asia. The watershed is what makes it significant.",
       },
-      { property: "og:title", content: "The Altai \u2014 The Altai Group" },
+      { property: "og:title", content: "The Name \u2014 The Altai Group" },
       {
         property: "og:description",
         content:
@@ -25,7 +25,7 @@ export function TheAltaiPage() {
     <div style={{ minHeight: "100vh" }}>
       <Header />
       <main
-        className="altai-section"
+        className="name-section"
         style={{
           paddingTop: "14vh",
           paddingLeft: "max(24px, 7vw)",
@@ -127,7 +127,7 @@ export function TheAltaiPage() {
       <style>{`
         .altai-closer { white-space: nowrap; }
         @media (max-width: 640px) {
-          .altai-section { padding-top: 11vh; }
+          .name-section { padding-top: 11vh; }
           .altai-closer { white-space: normal; }
         }
       `}</style>
