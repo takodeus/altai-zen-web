@@ -126,12 +126,12 @@ export function PodMesh() {
                 y1={vertices[a].y}
                 x2={vertices[b].x}
                 y2={vertices[b].y}
-                stroke="var(--accent)"
-                strokeWidth={1}
-                strokeDasharray="3 4"
+                stroke="var(--copper-bright)"
+                strokeWidth={2}
+                strokeDasharray="4 5"
                 fill="none"
                 style={{
-                  opacity: reduce ? 0.55 : 0.2,
+                  opacity: reduce ? 0.6 : 0.22,
                   animation: reduce
                     ? "none"
                     : `pod-edge-pulse ${meshDuration}s ease-in-out ${vertexDelays[a]}s infinite`,
@@ -143,12 +143,12 @@ export function PodMesh() {
                   y1={vertices[a].y}
                   x2={vertices[b].x}
                   y2={vertices[b].y}
-                  stroke="var(--accent)"
-                  strokeWidth={1}
-                  strokeDasharray="3 4"
+                  stroke="var(--copper-bright)"
+                  strokeWidth={2}
+                  strokeDasharray="4 5"
                   fill="none"
                   style={{
-                    opacity: 0.2,
+                    opacity: 0.22,
                     animation: `pod-edge-pulse ${meshDuration}s ease-in-out ${vertexDelays[b]}s infinite`,
                     mixBlendMode: "screen",
                   }}
