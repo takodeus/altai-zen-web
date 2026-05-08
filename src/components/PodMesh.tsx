@@ -56,9 +56,14 @@ export function PodMesh() {
     }
   }
 
-  // Edge stagger: each line has its own pulse delay so the mesh breathes
-  // around the network rather than blinking in unison.
-  const edgeDelays = useRef(edges.map((_, k) => (k * 0.6) % 6));
+  // Coordinated mesh wave: vertices light up clockwise around the pentagon;
+  // each edge fires when the earlier of its two endpoints activates.
+  const meshDuration = 8; // seconds
+  const vertexStep = 1.2; // seconds between adjacent vertices
+  const vertexDelays = vertices.map((_, i) => i * vertexStep);
+  const edgeDelaysList = edges.map(([a, b]) =>
+    Math.min(vertexDelays[a], vertexDelays[b]),
+  );
 
   const phaseLabelStyle = {
     fontSize: "13px",
