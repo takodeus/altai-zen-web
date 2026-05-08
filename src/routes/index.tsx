@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 import { RidgeRule } from "../components/RidgeRule";
 import { RiverRule } from "../components/RiverRule";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
@@ -51,37 +52,17 @@ export function HomePage() {
             }}
           />
           <p
-            className="label-caps"
+            className="t-eyebrow"
             style={{ color: "#edeef0", margin: 0, marginBottom: "1.75em" }}
           >
             Operational AI
           </p>
           <h1
-            className="font-serif"
-            style={{
-              fontWeight: 300,
-              lineHeight: 0.98,
-              letterSpacing: "-0.02em",
-              color: "#5a8f99",
-              margin: 0,
-            }}
+            className="t-display"
+            style={{ color: "#5a8f99", margin: 0 }}
           >
-            <span
-              style={{
-                display: "block",
-                fontSize: "clamp(3.5rem, 8.5vw, 6.15rem)",
-                fontWeight: 300,
-              }}
-            >
-              Doctrine upstream.
-            </span>
-            <span
-              style={{
-                display: "block",
-                fontSize: "clamp(3.25rem, 8vw, 5.75rem)",
-                marginTop: "0.12em",
-              }}
-            >
+            <span style={{ display: "block" }}>Doctrine upstream.</span>
+            <span style={{ display: "block", marginTop: "0.12em" }}>
               Autonomy downstream.
             </span>
           </h1>
@@ -89,23 +70,20 @@ export function HomePage() {
             <RidgeRule height={32} stroke="var(--copper-bright)" strokeWidth={2} />
           </div>
           <p
-            className="font-serif"
+            className="t-body"
             style={{
               marginTop: "3.25em",
-              fontSize: "1.15rem",
-              lineHeight: 1.6,
               maxWidth: "50ch",
               color: "#edeef0",
+              margin: "3.25em 0 0 0",
             }}
           >
             For real assets investors and operators moving past the dashboard
             era.
           </p>
           <p
-            className="font-serif"
+            className="t-body"
             style={{
-              fontSize: "1.15rem",
-              lineHeight: 1.6,
               maxWidth: "50ch",
               margin: "2.5em 0 0 0",
               color: "#edeef0",
@@ -116,10 +94,8 @@ export function HomePage() {
             definitions, or what context governed the call.
           </p>
           <p
-            className="font-serif"
+            className="t-body"
             style={{
-              fontSize: "1.15rem",
-              lineHeight: 1.6,
               maxWidth: "50ch",
               margin: "1.5em 0 0 0",
               color: "#edeef0",
@@ -129,12 +105,9 @@ export function HomePage() {
             output no one can trace.
           </p>
           <p
-            className="font-serif"
+            className="t-lede"
             style={{
-              fontSize: "clamp(1.25rem, 2.4vw, 1.65rem)",
               fontStyle: "italic",
-              lineHeight: 1.3,
-              letterSpacing: "-0.01em",
               maxWidth: "50ch",
               margin: "2.5em 0 0 0",
               color: "var(--copper-bright)",
@@ -149,9 +122,7 @@ export function HomePage() {
           </p>
         </section>
 
-        {/* River band — straddles the dark/light seam.
-            Top half is dark (extends the hero), bottom half is light.
-            The river SVG sits exactly on the boundary. */}
+        {/* River band — straddles the dark/light seam. */}
         <div
           style={{
             background:
@@ -168,40 +139,7 @@ export function HomePage() {
         </div>
       </main>
 
-      <footer
-        style={{
-          paddingTop: "1.5vh",
-          paddingBottom: "4vh",
-          paddingLeft: "max(24px, 7vw)",
-          paddingRight: "max(24px, 7vw)",
-        }}
-      >
-        <p
-          className="font-serif"
-          style={{
-            fontSize: "15px",
-            fontStyle: "italic",
-            color: "var(--copper-bright)",
-            margin: 0,
-            marginBottom: "8px",
-          }}
-        >
-          <Link to="/the-name" style={{ color: "inherit", textDecoration: "none" }}>
-            The Origin
-          </Link>
-        </p>
-        <p
-          className="font-sans"
-          style={{
-            fontSize: "12px",
-            color: "var(--foreground)",
-            opacity: 0.55,
-            margin: 0,
-          }}
-        >
-          {"\u00A9"} 2026 The Altai Group
-        </p>
-      </footer>
+      <Footer topLink={{ to: "/the-name", label: "The Origin" }} />
 
       <style>{`
         @media (max-width: 640px) {

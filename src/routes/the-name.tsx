@@ -1,4 +1,5 @@
 import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 import { RidgeRule } from "../components/RidgeRule";
 import { RiverRule } from "../components/RiverRule";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
@@ -43,15 +44,8 @@ export function TheNamePage() {
           }}
         />
         <h1
-          className="font-serif"
-          style={{
-            fontSize: "clamp(3.25rem, 8vw, 5.75rem)",
-            fontWeight: 300,
-            lineHeight: 0.98,
-            letterSpacing: "-0.02em",
-            color: "#1f7a8c",
-            margin: 0,
-          }}
+          className="t-display"
+          style={{ color: "#1f7a8c", margin: 0 }}
         >
           The watershed.
         </h1>
@@ -61,25 +55,25 @@ export function TheNamePage() {
         </div>
 
         <section style={{ marginTop: "2.5em", maxWidth: "50ch" }}>
-          <p className="font-serif" style={{ margin: 0 }}>
+          <p className="t-body" style={{ margin: 0 }}>
             The Altai is among the oldest mountain systems in Asia, formed roughly five hundred
             million years ago and shaped since by tectonic uplift and glacial cycles.
           </p>
-          <p className="font-serif" style={{ marginTop: "1.5em", marginBottom: 0 }}>
+          <p className="t-body" style={{ marginTop: "1.5em" }}>
             What makes the range significant is not its height. It is not the tallest in Asia. It is
             the watershed.
           </p>
-          <p className="font-serif" style={{ marginTop: "1.5em", marginBottom: 0 }}>
+          <p className="t-body" style={{ marginTop: "1.5em" }}>
             Major river systems originate in the Altai and flow outward across thousands of
             kilometers, shaping conditions far beyond the mountains themselves.
             Communities downstream may never see the source directly, yet remain dependent on the
             conditions it creates.
           </p>
-          <p className="font-serif" style={{ marginTop: "1.5em", marginBottom: 0 }}>
+          <p className="t-body" style={{ marginTop: "1.5em" }}>
             A decision made in the catchment can alter conditions a thousand kilometers away,
             generations later, in places that no longer remember where the water began.
           </p>
-          <p className="font-serif" style={{ marginTop: "2em", marginBottom: 0 }}>
+          <p className="t-body" style={{ marginTop: "2em" }}>
             The Altai is also a homeland. Centuries ago, the operating unit
             constituted there was the Arban: ten riders carrying authority
             with them, acting on first contact, coordinating across distance
@@ -88,15 +82,12 @@ export function TheNamePage() {
         </section>
 
         <p
-          className="font-serif altai-closer"
+          className="t-lede altai-closer"
           style={{
             marginTop: "2.5em",
             marginBottom: 0,
             fontStyle: "italic",
             color: "var(--copper-bright)",
-            fontSize: "clamp(1.25rem, 2.4vw, 1.65rem)",
-            lineHeight: 1.3,
-            letterSpacing: "-0.01em",
           }}
         >
           <span style={{ display: "block" }}>The name is the watershed.</span>
@@ -110,26 +101,7 @@ export function TheNamePage() {
         <RiverRule height={48} stroke="var(--accent)" strokeWidth={2} />
       </div>
 
-      <footer
-        style={{
-          paddingTop: "1.5vh",
-          paddingBottom: "4vh",
-          paddingLeft: "max(24px, 7vw)",
-          paddingRight: "max(24px, 7vw)",
-        }}
-      >
-        <p
-          className="font-sans"
-          style={{
-            fontSize: "12px",
-            color: "var(--foreground)",
-            opacity: 0.55,
-            margin: 0,
-          }}
-        >
-          {"\u00A9"} 2026 The Altai Group
-        </p>
-      </footer>
+      <Footer topLink={{ to: "/", label: "The Altai" }} />
 
       <style>{`
         @media (max-width: 640px) {

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 import { RidgeRule } from "../components/RidgeRule";
 import { RiverRule } from "../components/RiverRule";
 import { RiverFragment } from "../components/RiverFragment";
@@ -8,68 +9,7 @@ import { useDocumentMeta } from "../hooks/useDocumentMeta";
 const teal = "#5a8f99";
 const copperBright = "var(--copper-bright)";
 
-const eyebrowStyle: React.CSSProperties = {
-  fontFamily: "var(--font-sans)",
-  fontSize: "11px",
-  letterSpacing: "0.18em",
-  textTransform: "uppercase",
-  color: "var(--muted-foreground)",
-  margin: 0,
-  marginBottom: "2.5em",
-};
-
-const heroStyle: React.CSSProperties = {
-  fontFamily: "var(--font-serif)",
-  fontWeight: 300,
-  fontSize: "clamp(2.6rem, 6.5vw, 4.6rem)",
-  lineHeight: 1.05,
-  letterSpacing: "-0.02em",
-  color: teal,
-  margin: 0,
-};
-
-const sectionTitleStyle: React.CSSProperties = {
-  fontFamily: "var(--font-serif)",
-  fontWeight: 500,
-  fontSize: "clamp(1.6rem, 3.2vw, 2.2rem)",
-  lineHeight: 1.15,
-  letterSpacing: "-0.01em",
-  color: teal,
-  margin: 0,
-  marginBottom: "1.4em",
-};
-
-const bodyStyle: React.CSSProperties = {
-  fontFamily: "var(--font-serif)",
-  fontSize: "1.1rem",
-  lineHeight: 1.75,
-  color: "var(--foreground)",
-  margin: 0,
-  maxWidth: "56ch",
-};
-
-const bodyParaStyle: React.CSSProperties = {
-  ...bodyStyle,
-  marginTop: "1.4em",
-};
-
-const layerNameStyle: React.CSSProperties = {
-  fontFamily: "var(--font-serif)",
-  fontWeight: 500,
-  fontStyle: "italic",
-  color: teal,
-};
-
-const closingLineStyle: React.CSSProperties = {
-  fontFamily: "var(--font-serif)",
-  fontStyle: "italic",
-  fontSize: "clamp(1.25rem, 2.4vw, 1.65rem)",
-  lineHeight: 1.3,
-  letterSpacing: "-0.01em",
-  color: copperBright,
-  margin: 0,
-};
-
+const bodyMax: React.CSSProperties = { maxWidth: "56ch" };
 const pauseStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
@@ -116,9 +56,14 @@ export function TheDoctrinePage() {
           }}
         />
 
-        <p style={eyebrowStyle}>The Doctrine</p>
+        <p
+          className="t-eyebrow"
+          style={{ color: "var(--muted-foreground)", margin: 0, marginBottom: "2.5em" }}
+        >
+          The Doctrine
+        </p>
 
-        <h1 style={heroStyle}>
+        <h1 className="t-h1" style={{ color: teal, margin: 0 }}>
           <span style={{ display: "block" }}>Systems forget.</span>
           <span style={{ display: "block", marginTop: "0.08em" }}>
             That is why AI stalls.
@@ -130,35 +75,37 @@ export function TheDoctrinePage() {
         </div>
 
         {/* Opening */}
-        <section style={{ marginTop: "3.25em", maxWidth: "56ch" }}>
-          <p style={bodyStyle}>
+        <section style={{ marginTop: "3.25em", ...bodyMax }}>
+          <p className="t-body" style={{ margin: 0 }}>
             Enterprise architecture was built for a world in which
             interpretation happened outside the system.
           </p>
-          <p style={bodyParaStyle}>The interpreter has been removed.</p>
-          <p style={bodyParaStyle}>
+          <p className="t-body" style={{ marginTop: "1.4em" }}>The interpreter has been removed.</p>
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
             What was implicit in the architecture is now load-bearing. And
             absent.
           </p>
         </section>
 
         {/* The arbitration. */}
-        <section style={{ marginTop: "5em", maxWidth: "56ch" }}>
-          <h2 style={sectionTitleStyle}>The arbitration.</h2>
-          <p style={bodyStyle}>
+        <section style={{ marginTop: "5em", ...bodyMax }}>
+          <h2 className="t-h2" style={{ color: teal, margin: 0, marginBottom: "1.4em" }}>
+            The arbitration.
+          </h2>
+          <p className="t-body" style={{ margin: 0 }}>
             Institutional meaning is not monolithic. Risk under one definition
             is not risk under another. Exposure depends on which committee is
             reading. Performance is measured against a thesis that itself
             moves.
           </p>
-          <p style={bodyParaStyle}>
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
             Firms have always operated under this. A person absorbed the
             inconsistency, translated between local definitions and the
             position the firm intended to hold, reconciled across systems that
             did not reconcile to each other. They governed meaning in real
             time, in their own heads. They did not write it down.
           </p>
-          <p style={bodyParaStyle}>
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
             That arbitration was the integration layer. It cannot be recovered
             from any system.
           </p>
@@ -169,23 +116,25 @@ export function TheDoctrinePage() {
         </div>
 
         {/* The substitution. */}
-        <section style={{ maxWidth: "56ch" }}>
-          <h2 style={sectionTitleStyle}>The substitution.</h2>
-          <p style={bodyStyle}>
+        <section style={bodyMax}>
+          <h2 className="t-h2" style={{ color: teal, margin: 0, marginBottom: "1.4em" }}>
+            The substitution.
+          </h2>
+          <p className="t-body" style={{ margin: 0 }}>
             An agent inherits the data. It does not inherit the interpreter.
           </p>
-          <p style={bodyParaStyle}>
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
             It receives point-in-time data and inherits it as though it were
             final. It cannot see the alternatives that were ruled out, the
             contexts that decided which definition governed, or the moments
             when meaning moved. It produces output that is fluent yet
             unauditable.
           </p>
-          <p style={bodyParaStyle}>
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
             The reviewer has nothing to check it against. That record was
             never on the system in the first place.
           </p>
-          <p style={bodyParaStyle}>
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
             Pilots that do not fail technically stall here. Not because the
             model is wrong. Because the conditions the institution relied on
             for coherence have been removed.
@@ -197,37 +146,39 @@ export function TheDoctrinePage() {
         </div>
 
         {/* The condition. */}
-        <section style={{ maxWidth: "56ch" }}>
-          <h2 style={sectionTitleStyle}>The condition.</h2>
-          <p style={bodyStyle}>The architecture was not wrong. The conditions changed.</p>
-          <p style={bodyParaStyle}>
+        <section style={bodyMax}>
+          <h2 className="t-h2" style={{ color: teal, margin: 0, marginBottom: "1.4em" }}>
+            The condition.
+          </h2>
+          <p className="t-body" style={{ margin: 0 }}>The architecture was not wrong. The conditions changed.</p>
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
             Coordination is now the institutional problem. Not capability.
             Not access. Not speed. The systems are fast. The models are
             capable. What no longer holds is the coherence between them.
           </p>
-          <p style={bodyParaStyle}>
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
             Three layers must now exist where the interpreter used to stand.
           </p>
-          <p style={bodyParaStyle}>
-            <span style={layerNameStyle}>Semantic governance.</span> The
-            institution{"'"}s meaning, held consistently enough for systems
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
+            <span style={{ fontStyle: "italic", fontWeight: 500, color: teal }}>Semantic governance.</span>{" "}
+            The institution{"'"}s meaning, held consistently enough for systems
             to act on it.
           </p>
-          <p style={bodyParaStyle}>
-            <span style={layerNameStyle}>Interpretive authority.</span> A way
-            to preserve multiple legitimate views of the same reality without
-            collapsing them into false consensus.
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
+            <span style={{ fontStyle: "italic", fontWeight: 500, color: teal }}>Interpretive authority.</span>{" "}
+            A way to preserve multiple legitimate views of the same reality
+            without collapsing them into false consensus.
           </p>
-          <p style={bodyParaStyle}>
-            <span style={layerNameStyle}>Decision lineage.</span> A retained
-            record of judgment. Not the outcome. The reasoning the outcome
-            rested on, in a form the firm can return to.
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
+            <span style={{ fontStyle: "italic", fontWeight: 500, color: teal }}>Decision lineage.</span>{" "}
+            A retained record of judgment. Not the outcome. The reasoning the
+            outcome rested on, in a form the firm can return to.
           </p>
-          <p style={bodyParaStyle}>
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
             These are not features. They are the interpretive layer the
             architecture quietly depended on, reconstituted on the system.
           </p>
-          <p style={bodyParaStyle}>
+          <p className="t-body" style={{ marginTop: "1.4em" }}>
             Until they exist, institutions will continue producing output
             they cannot fully trust, at increasing scale, under increasing
             pressure.
@@ -235,13 +186,11 @@ export function TheDoctrinePage() {
         </section>
 
         {/* Closing copper signature */}
-        <div
-          style={{
-            marginTop: "4em",
-            maxWidth: "56ch",
-          }}
-        >
-          <p style={closingLineStyle}>
+        <div style={{ marginTop: "4em", ...bodyMax }}>
+          <p
+            className="t-lede"
+            style={{ fontStyle: "italic", color: copperBright, margin: 0 }}
+          >
             <Link
               to="/the-work"
               style={{ color: "inherit", textDecoration: "none" }}
@@ -258,26 +207,7 @@ export function TheDoctrinePage() {
         <RiverRule height={48} stroke="var(--accent)" strokeWidth={2} />
       </div>
 
-      <footer
-        style={{
-          paddingTop: "1.5vh",
-          paddingBottom: "4vh",
-          paddingLeft: "max(24px, 7vw)",
-          paddingRight: "max(24px, 7vw)",
-        }}
-      >
-        <p
-          className="font-sans"
-          style={{
-            fontSize: "12px",
-            color: "var(--foreground)",
-            opacity: 0.55,
-            margin: 0,
-          }}
-        >
-          {"\u00A9"} 2026 The Altai Group
-        </p>
-      </footer>
+      <Footer topLink={{ to: "/the-name", label: "The Origin" }} />
 
       <style>{`
         @media (max-width: 640px) {
