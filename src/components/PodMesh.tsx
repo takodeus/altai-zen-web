@@ -70,7 +70,7 @@ export function PodMesh() {
     fontWeight: 600,
     letterSpacing: "0.16em",
     textTransform: "uppercase" as const,
-    fill: reduce ? "var(--accent)" : "var(--foreground)",
+    fill: reduce ? "var(--copper-bright)" : "var(--foreground)",
     opacity: reduce ? 1 : 0.15,
   };
 
@@ -172,7 +172,7 @@ export function PodMesh() {
             cy={center.y}
             r={130}
             fill="none"
-            stroke="var(--accent)"
+            stroke="var(--copper-bright)"
             strokeWidth={3}
             strokeLinecap="round"
             strokeDasharray="204 613"
@@ -181,6 +181,27 @@ export function PodMesh() {
               transform: "rotate(-90deg)",
               animation: reduce ? "none" : "pod-arc-travel 6s linear infinite",
             }}
+          />
+
+          {/* Pod core: copper anchor at the center of the OODA ring */}
+          <circle
+            cx={center.x}
+            cy={center.y}
+            r={14}
+            fill="var(--copper)"
+            opacity={0.18}
+            style={{
+              animation: reduce
+                ? "none"
+                : "pod-core-breath 5s ease-in-out infinite",
+              transformOrigin: `${center.x}px ${center.y}px`,
+            }}
+          />
+          <circle
+            cx={center.x}
+            cy={center.y}
+            r={6}
+            fill="var(--copper-bright)"
           />
 
           {/* Phase labels: dormant until arc arrives, then pulse to full accent */}
@@ -306,11 +327,15 @@ export function PodMesh() {
           from { transform: rotate(-90deg); }
           to { transform: rotate(270deg); }
         }
+        @keyframes pod-core-breath {
+          0%, 100% { opacity: 0.18; transform: scale(1); }
+          50%      { opacity: 0.36; transform: scale(1.15); }
+        }
         /* Peak at 0% so animation-delay aligns directly with the arc's
            leading-edge arrival time at each label. */
         @keyframes pod-label-pulse {
-          0%   { opacity: 1;    fill: var(--accent); }
-          12%  { opacity: 0.9;  fill: var(--accent); }
+          0%   { opacity: 1;    fill: var(--copper-bright); }
+          12%  { opacity: 0.9;  fill: var(--copper-bright); }
           22%  { opacity: 0.15; fill: var(--foreground); }
           100% { opacity: 0.15; fill: var(--foreground); }
         }
