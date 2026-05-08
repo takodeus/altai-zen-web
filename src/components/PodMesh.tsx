@@ -1,78 +1,73 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * A five-node lateral mesh visualizing the Arban Pod.
+ * The Arban Pod.
  *
- * Adapted from the Takodeus MongolMesh. Five disciplines, every node
- * connected to every other, no hierarchy. Random nodes light briefly,
- * edges pulse. Beneath the mesh, a band names the loop the unit runs.
+ * Five disciplines form a peer mesh; the OODA loop runs continuously inside.
+ * A traveling arc sweeps clockwise around an inner ring; each phase label is
+ * dormant until the arc's leading edge reaches it, at which point the label
+ * pulses to full accent and decays back to dormant.
  *
- * Honors prefers-reduced-motion.
+ * Honors prefers-reduced-motion: arc and pulse freeze, all phase labels
+ * remain at full accent so the structure reads as a static diagram.
  */
 export function PodMesh() {
-  const nodes = [
-    "Domain",
-    "Data Engineering",
-    "Data Science",
-    "AI Architecture",
+  const [reduce, setReduce] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduce(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+
+  // Pentagon vertices at radius 240 from center (400, 310).
+  // Vertex 0: top, 1: upper right, 2: lower right, 3: lower left, 4: upper left.
+  const center = { x: 400, y: 310 };
+  const radius = 240;
+  const angles = [-90, -18, 54, 126, 198];
+  const vertices = angles.map((deg) => {
+    const rad = (deg * Math.PI) / 180;
+    return {
+      x: center.x + radius * Math.cos(rad),
+      y: center.y + radius * Math.sin(rad),
+    };
+  });
+
+  // Discipline labels, in pentagon-vertex order (clockwise from top).
+  const disciplines = [
     "Product",
+    "AI Architecture",
+    "Data Science",
+    "Data Engineering",
+    "Domain",
   ];
 
-  // Layout: 2-3 staggered grid, centered. Top row: 2 nodes. Bottom row: 3 nodes.
-  // Each node gets an explicit (x, y) so we control the visual rhythm.
-  const cellW = 140;
-  const cellH = 44;
-  const padX = 18;
-  const padY = 22;
-  // Row widths
-  const topRowW = 2 * cellW + 1 * padX;
-  const bottomRowW = 3 * cellW + 2 * padX;
-  const w = bottomRowW;
-  const topOffset = (bottomRowW - topRowW) / 2;
-  const positions = [
-    // Top row: Domain, Product (2 nodes — the "outward-facing" disciplines)
-    { x: topOffset, y: 0, label: nodes[0] },
-    { x: topOffset + cellW + padX, y: 0, label: nodes[4] },
-    // Bottom row: Data Engineering, Data Science, AI Architecture
-    { x: 0, y: cellH + padY, label: nodes[1] },
-    { x: cellW + padX, y: cellH + padY, label: nodes[2] },
-    { x: 2 * (cellW + padX), y: cellH + padY, label: nodes[3] },
-  ];
-  const h = 2 * cellH + padY;
+  // Plate dimensions.
+  const plateW = 132;
+  const plateH = 38;
 
-  const cx = (i: number) => positions[i].x + cellW / 2;
-  const cy = (i: number) => positions[i].y + cellH / 2;
-
-  // Every node connects to every other node — full mesh.
-  const connections: Array<[number, number]> = [];
-  for (let i = 0; i < positions.length; i++) {
-    for (let j = i + 1; j < positions.length; j++) {
-      connections.push([i, j]);
+  // Full mesh: every vertex connected to every other (10 edges).
+  const edges: Array<[number, number]> = [];
+  for (let i = 0; i < vertices.length; i++) {
+    for (let j = i + 1; j < vertices.length; j++) {
+      edges.push([i, j]);
     }
   }
 
-  const edgeMeta = useRef(
-    connections.map(() => ({
-      duration: 1.8 + Math.random() * 1.4,
-      delay: Math.random() * 2,
-    })),
-  );
+  // Edge stagger: each line has its own pulse delay so the mesh breathes
+  // around the network rather than blinking in unison.
+  const edgeDelays = useRef(edges.map((_, k) => (k * 0.6) % 6));
 
-  const [active, setActive] = useState<number[]>([]);
-
-  useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
-    const id = setInterval(() => {
-      const n = Math.floor(Math.random() * positions.length);
-      setActive((prev) => [n, ...prev].slice(0, 2));
-      setTimeout(
-        () => setActive((prev) => prev.filter((x) => x !== n)),
-        650,
-      );
-    }, 1100);
-    return () => clearInterval(id);
-  }, [positions.length]);
+  const phaseLabelStyle = {
+    fontSize: "13px",
+    fontWeight: 600,
+    letterSpacing: "0.16em",
+    textTransform: "uppercase" as const,
+    fill: reduce ? "var(--accent)" : "var(--foreground)",
+    opacity: reduce ? 1 : 0.15,
+  };
 
   return (
     <div
@@ -100,112 +95,141 @@ export function PodMesh() {
       <div
         style={{
           position: "relative",
-          width: w,
-          height: h,
-          maxWidth: "100%",
+          width: "100%",
+          aspectRatio: "1.35 / 1",
           margin: "0 auto",
         }}
       >
         <svg
+          viewBox="0 0 800 600"
           style={{
-            position: "absolute",
-            inset: 0,
             width: "100%",
             height: "100%",
             overflow: "visible",
           }}
-          viewBox={`0 0 ${w} ${h}`}
-          fill="none"
-          aria-hidden="true"
+          aria-label="The Arban Pod: five disciplines forming a peer mesh, with an OODA loop running continuously inside."
+          role="img"
         >
-          {connections.map(([a, b], k) => {
-            const lit = active.includes(a) || active.includes(b);
-            const meta = edgeMeta.current[k];
-            return (
-              <line
-                key={k}
-                x1={cx(a)}
-                y1={cy(a)}
-                x2={cx(b)}
-                y2={cy(b)}
-                stroke="var(--accent)"
-                strokeWidth={lit ? 1 : 0.6}
-                strokeDasharray="2 3"
-                style={{
-                  opacity: lit ? 0.85 : 0.3,
-                  transition: "opacity 280ms ease, stroke-width 280ms ease",
-                  animation: `pod-edge-pulse ${meta.duration}s ease-in-out ${meta.delay}s infinite`,
-                }}
-              />
-            );
-          })}
-        </svg>
-
-        {positions.map((p, i) => {
-          const isActive = active.includes(i);
-          return (
-            <div
-              key={p.label}
+          {/* Mesh: ten peer connections between five pentagon vertices */}
+          {edges.map(([a, b], k) => (
+            <line
+              key={`edge-${k}`}
+              x1={vertices[a].x}
+              y1={vertices[a].y}
+              x2={vertices[b].x}
+              y2={vertices[b].y}
+              stroke="var(--accent)"
+              strokeWidth={1}
+              strokeDasharray="3 4"
+              fill="none"
               style={{
-                position: "absolute",
-                left: p.x,
-                top: p.y,
-                width: cellW,
-                height: cellH,
-                border: `1px solid ${isActive ? "var(--accent)" : "var(--border)"}`,
-                background: isActive
-                  ? "rgba(31, 122, 140, 0.04)"
-                  : "var(--background)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                boxShadow: isActive
-                  ? "0 0 12px 1px rgba(31, 122, 140, 0.18)"
-                  : "0 0 0 0 transparent",
-                transition: "border-color 320ms ease, background 320ms ease, box-shadow 320ms ease",
+                opacity: 0.55,
+                animation: reduce
+                  ? "none"
+                  : `pod-mesh-pulse 6s ease-in-out ${edgeDelays.current[k]}s infinite`,
               }}
-            >
-              <span
+            />
+          ))}
+
+          {/* OODA ring backdrop, base, traveling arc */}
+          <circle cx={center.x} cy={center.y} r={130} fill="var(--background)" />
+          <circle
+            cx={center.x}
+            cy={center.y}
+            r={130}
+            fill="none"
+            stroke="var(--border)"
+            strokeWidth={2}
+          />
+          <circle
+            cx={center.x}
+            cy={center.y}
+            r={130}
+            fill="none"
+            stroke="var(--accent)"
+            strokeWidth={3}
+            strokeLinecap="round"
+            strokeDasharray="204 613"
+            style={{
+              transformOrigin: `${center.x}px ${center.y}px`,
+              transform: "rotate(-90deg)",
+              animation: reduce ? "none" : "pod-arc-travel 6s linear infinite",
+            }}
+          />
+
+          {/* Phase labels: dormant until arc arrives, then pulse to full accent */}
+          <text
+            className="font-sans pod-phase-label pod-phase-observe"
+            x={center.x}
+            y={225}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            style={phaseLabelStyle}
+          >
+            OBSERVE
+          </text>
+          <text
+            className="font-sans pod-phase-label pod-phase-orient"
+            x={475}
+            y={center.y}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            style={phaseLabelStyle}
+          >
+            ORIENT
+          </text>
+          <text
+            className="font-sans pod-phase-label pod-phase-decide"
+            x={center.x}
+            y={395}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            style={phaseLabelStyle}
+          >
+            DECIDE
+          </text>
+          <text
+            className="font-sans pod-phase-label pod-phase-act"
+            x={325}
+            y={center.y}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            style={phaseLabelStyle}
+          >
+            ACT
+          </text>
+
+          {/* Discipline plates */}
+          {vertices.map((v, i) => (
+            <g key={`plate-${i}`}>
+              <rect
+                x={v.x - plateW / 2}
+                y={v.y - plateH / 2}
+                width={plateW}
+                height={plateH}
+                rx={2}
+                fill="var(--background)"
+                stroke="var(--border)"
+                strokeWidth={1}
+              />
+              <text
                 className="font-sans"
+                x={v.x}
+                y={v.y}
+                textAnchor="middle"
+                dominantBaseline="middle"
                 style={{
-                  fontSize: "12px",
-                  letterSpacing: "0.04em",
-                  color: "var(--foreground)",
+                  fontSize: "13px",
                   fontWeight: 500,
+                  letterSpacing: "0.02em",
+                  fill: "var(--foreground)",
                 }}
               >
-                {p.label}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-
-      <div
-        style={{
-          marginTop: "1.6em",
-          border: "1px solid var(--copper-bright)",
-          padding: "0.6em 0.9em",
-          textAlign: "center",
-          position: "relative",
-          overflow: "hidden",
-          backgroundImage:
-            "linear-gradient(110deg, rgba(198,148,104,0.04) 0%, rgba(198,148,104,0.18) 50%, rgba(198,148,104,0.04) 100%)",
-          backgroundSize: "220% 100%",
-          animation: "pod-band-sheen 6s ease-in-out infinite",
-        }}
-      >
-        <span
-          className="font-sans"
-          style={{
-            fontSize: "10px",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "var(--copper-bright)",
-          }}
-        >
-          OODA loop
-        </span>
+                {disciplines[i]}
+              </text>
+            </g>
+          ))}
+        </svg>
       </div>
 
       <p
@@ -220,21 +244,31 @@ export function PodMesh() {
         }}
       >
         Five disciplines, one unit. Authority is constituted at the pod. The
-        loop runs continuously, inside the unit, against the firm's context.
+        loop runs continuously, inside the unit, against the firm{"'"}s context.
       </p>
 
       <style>{`
-        @keyframes pod-edge-pulse {
-          0%, 100% { opacity: 0.18; }
-          50% { opacity: 0.5; }
+        @keyframes pod-mesh-pulse {
+          0%, 100% { opacity: 0.55; }
+          50% { opacity: 1; }
         }
-        @keyframes pod-band-sheen {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
+        @keyframes pod-arc-travel {
+          from { transform: rotate(-90deg); }
+          to { transform: rotate(270deg); }
         }
+        @keyframes pod-label-pulse {
+          0% { opacity: 0.15; fill: var(--foreground); }
+          5% { opacity: 1; fill: var(--accent); }
+          15% { opacity: 0.9; fill: var(--accent); }
+          25% { opacity: 0.15; fill: var(--foreground); }
+          100% { opacity: 0.15; fill: var(--foreground); }
+        }
+        .pod-phase-observe { animation: pod-label-pulse 6s linear infinite; animation-delay: 0s; }
+        .pod-phase-orient { animation: pod-label-pulse 6s linear infinite; animation-delay: -4.5s; }
+        .pod-phase-decide { animation: pod-label-pulse 6s linear infinite; animation-delay: -3s; }
+        .pod-phase-act { animation: pod-label-pulse 6s linear infinite; animation-delay: -1.5s; }
         @media (prefers-reduced-motion: reduce) {
-          line { animation: none !important; }
-          [style*="pod-band-sheen"] { animation: none !important; }
+          .pod-phase-label { animation: none !important; }
         }
       `}</style>
     </div>
