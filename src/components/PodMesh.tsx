@@ -115,7 +115,7 @@ export function PodMesh() {
           aria-label="The Arban Pod: five disciplines forming a peer mesh, with an OODA loop running continuously inside."
           role="img"
         >
-          {/* Mesh: ten peer connections between five pentagon vertices */}
+          {/* Mesh: ten peer connections that light up as the wave reaches them */}
           {edges.map(([a, b], k) => (
             <line
               key={`edge-${k}`}
@@ -128,10 +128,10 @@ export function PodMesh() {
               strokeDasharray="3 4"
               fill="none"
               style={{
-                opacity: 0.55,
+                opacity: reduce ? 0.55 : 0.2,
                 animation: reduce
                   ? "none"
-                  : `pod-mesh-pulse 6s ease-in-out ${edgeDelays.current[k]}s infinite`,
+                  : `pod-edge-pulse ${meshDuration}s ease-in-out ${edgeDelaysList[k]}s infinite`,
               }}
             />
           ))}
