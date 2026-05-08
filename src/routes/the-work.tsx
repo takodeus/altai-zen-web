@@ -152,10 +152,10 @@ export function TheWorkPage() {
             record and the agents acting on them.
           </p>
           <p style={bodyParaStyle}>
-            A coherent, machine-readable representation of the firm's
-            reality. Entities, relationships, authorities, events. Resolved
-            across systems and held over time. Who holds the authority to
-            revise them as meaning moves.
+            A coherent institutional model of the firm. Entities,
+            relationships, authorities, events. Resolved across systems and
+            held over time. Who holds the authority to revise them as
+            meaning moves.
           </p>
           <p style={bodyParaStyle}>
             The unit of work is not a recommendation, an integrated workflow,
@@ -187,9 +187,9 @@ export function TheWorkPage() {
             Composition adjusts to the engagement.
           </p>
           <p style={bodyParaStyle}>
-            The pod runs a complete OODA loop. Observation, orientation,
-            decision, and action all live inside the unit. Authority is
-            constituted where the work is done.
+            The pod operates as a complete decision unit. Observation,
+            orientation, decision, and action remain coupled inside the
+            work itself. Authority is constituted where the work is done.
           </p>
         </section>
 
