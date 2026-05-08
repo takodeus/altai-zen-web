@@ -70,7 +70,7 @@ export function PodMesh() {
     fontWeight: 600,
     letterSpacing: "0.16em",
     textTransform: "uppercase" as const,
-    fill: reduce ? "var(--accent)" : "var(--foreground)",
+    fill: reduce ? "var(--copper-bright)" : "var(--foreground)",
     opacity: reduce ? 1 : 0.15,
   };
 
