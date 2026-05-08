@@ -94,7 +94,7 @@ export function TheNamePage() {
             marginBottom: 0,
             fontStyle: "italic",
             color: "var(--copper-bright)",
-            fontSize: "clamp(1.15rem, 2.2vw, 1.75rem)",
+            fontSize: "clamp(1.25rem, 2.4vw, 1.65rem)",
             lineHeight: 1.3,
             letterSpacing: "-0.01em",
           }}

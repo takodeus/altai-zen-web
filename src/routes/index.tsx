@@ -131,9 +131,10 @@ export function HomePage() {
           <p
             className="font-serif"
             style={{
-              fontSize: "1.15rem",
+              fontSize: "clamp(1.25rem, 2.4vw, 1.65rem)",
               fontStyle: "italic",
-              lineHeight: 1.6,
+              lineHeight: 1.3,
+              letterSpacing: "-0.01em",
               maxWidth: "50ch",
               margin: "2.5em 0 0 0",
               color: "var(--copper-bright)",

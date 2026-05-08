@@ -246,7 +246,7 @@ export function TheDoctrinePage() {
               to="/the-work"
               style={{ color: "inherit", textDecoration: "none" }}
             >
-              The work is the layer.
+              The work is the missing layer.
             </Link>
           </p>
         </div>
