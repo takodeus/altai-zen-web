@@ -89,7 +89,7 @@ export function HomePage() {
               color: "#edeef0",
             }}
           >
-            The systems your firm runs on were built to record what is true
+            The systems the firm runs on were built to record what is true
             now. They do not preserve why anything was decided, under which
             definitions, or what context governed the call.
           </p>
