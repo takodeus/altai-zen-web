@@ -213,12 +213,18 @@ export function PodMesh() {
                 width={plateW}
                 height={plateH}
                 rx={2}
+                className="pod-plate-rect"
                 fill="var(--background)"
                 stroke="var(--border)"
                 strokeWidth={1}
+                style={{
+                  animation: reduce
+                    ? "none"
+                    : `pod-plate-rect ${meshDuration}s ease-in-out ${vertexDelays[i]}s infinite`,
+                }}
               />
               <text
-                className="font-sans"
+                className="font-sans pod-plate-text"
                 x={v.x}
                 y={v.y}
                 textAnchor="middle"
@@ -228,6 +234,9 @@ export function PodMesh() {
                   fontWeight: 500,
                   letterSpacing: "0.02em",
                   fill: "var(--foreground)",
+                  animation: reduce
+                    ? "none"
+                    : `pod-plate-text ${meshDuration}s ease-in-out ${vertexDelays[i]}s infinite`,
                 }}
               >
                 {disciplines[i]}
