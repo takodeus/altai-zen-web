@@ -11,13 +11,13 @@ export function HomePage() {
       {
         name: "description",
         content:
-          "A coordination layer for real assets investors and operators adapting to machine-speed environments.",
+          "For real assets investors and operators moving past the dashboard era.",
       },
       { property: "og:title", content: "The Altai Group" },
       {
         property: "og:description",
         content:
-          "A coordination layer for real assets investors and operators adapting to machine-speed environments.",
+          "For real assets investors and operators moving past the dashboard era.",
       },
     ],
   });
@@ -98,8 +98,8 @@ export function HomePage() {
               color: "#edeef0",
             }}
           >
-            For real assets investors and operators operating at machine speed,
-            where decisions propagate faster than organizations can reconcile.
+            For real assets investors and operators moving past the dashboard
+            era.
           </p>
           <p
             className="font-serif"
@@ -111,9 +111,35 @@ export function HomePage() {
               color: "#edeef0",
             }}
           >
-            The hardest problems in enterprise AI are not problems of model capability. They are
-            problems of authority, memory, and coordination.{" "}
-            <span style={{ color: "var(--copper-bright)" }}>Altai works there.</span>
+            The systems your firm runs on were built to record what is true
+            now. They do not preserve why anything was decided, under which
+            definitions, or what context governed the call.
+          </p>
+          <p
+            className="font-serif"
+            style={{
+              fontSize: "1.15rem",
+              lineHeight: 1.6,
+              maxWidth: "50ch",
+              margin: "1.5em 0 0 0",
+              color: "#edeef0",
+            }}
+          >
+            Agents deployed onto that architecture cannot act. They produce
+            output no one can trace, and the pilot stalls.
+          </p>
+          <p
+            className="font-serif"
+            style={{
+              fontSize: "1.15rem",
+              fontStyle: "italic",
+              lineHeight: 1.6,
+              maxWidth: "50ch",
+              margin: "2.5em 0 0 0",
+              color: "var(--copper-bright)",
+            }}
+          >
+            The doctrine sits upstream of this.
           </p>
         </section>
 
@@ -154,7 +180,7 @@ export function HomePage() {
             marginBottom: "8px",
           }}
         >
-          <Link to="/the-altai" style={{ color: "inherit", textDecoration: "none" }}>
+          <Link to="/the-name" style={{ color: "inherit", textDecoration: "none" }}>
             The Altai
           </Link>
         </p>
