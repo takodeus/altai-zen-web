@@ -181,7 +181,7 @@ export function HomePage() {
           }}
         >
           <Link to="/the-name" style={{ color: "inherit", textDecoration: "none" }}>
-            The Altai
+            The Origin
           </Link>
         </p>
         <p

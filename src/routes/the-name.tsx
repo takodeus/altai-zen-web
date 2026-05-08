@@ -5,14 +5,14 @@ import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
 export function TheNamePage() {
   useDocumentMeta({
-    title: "The Name \u2014 The Altai Group",
+    title: "The Origin \u2014 The Altai Group",
     meta: [
       {
         name: "description",
         content:
           "The Altai is among the oldest mountain systems in Asia. The watershed is what makes it significant.",
       },
-      { property: "og:title", content: "The Name \u2014 The Altai Group" },
+      { property: "og:title", content: "The Origin \u2014 The Altai Group" },
       {
         property: "og:description",
         content:
