@@ -327,11 +327,15 @@ export function PodMesh() {
           from { transform: rotate(-90deg); }
           to { transform: rotate(270deg); }
         }
+        @keyframes pod-core-breath {
+          0%, 100% { opacity: 0.18; transform: scale(1); }
+          50%      { opacity: 0.36; transform: scale(1.15); }
+        }
         /* Peak at 0% so animation-delay aligns directly with the arc's
            leading-edge arrival time at each label. */
         @keyframes pod-label-pulse {
-          0%   { opacity: 1;    fill: var(--accent); }
-          12%  { opacity: 0.9;  fill: var(--accent); }
+          0%   { opacity: 1;    fill: var(--copper-bright); }
+          12%  { opacity: 0.9;  fill: var(--copper-bright); }
           22%  { opacity: 0.15; fill: var(--foreground); }
           100% { opacity: 0.15; fill: var(--foreground); }
         }
