@@ -1,44 +1,70 @@
-## Goal
+## What's there now
 
-Introduce `--copper` / `--copper-bright` as an accent in the Arban Pod graphic so the visual isn't carried by teal alone. Today, only the small eyebrow ("The Arban Pod") uses copper — everything inside the SVG is teal accent or neutral.
+`RiverFragment` (`src/components/RiverFragment.tsx`) is the section divider used between blocks on `/the-doctrine` and `/the-work`. It draws two near-parallel teal curves (~200×24px), both 0.9px stroke weight, both gently undulating left → right with similar arc directions.
 
-## Where copper could go
+**Why it underwhelms today:**
+- The two curves run almost parallel and almost the same length, so the mark reads as a generic squiggle rather than as a deliberate brand element.
+- It uses no copper, so it has no visual link to the hero `RidgeRule` (copper) or the brand identity.
+- Stroke weight (0.9) is so light it nearly disappears at standard zoom and on the dark theme.
+- It doesn't echo the asymmetric three-flow logic of `RiverRule` (the closing mark on every page) — it feels like an unrelated motif rather than a compressed quotation of the river.
+- It sits dead-centered with no anchor mark, so its role as a "turn" is purely decorative.
 
-Ranked by how much they sharpen the meaning of the diagram, not just decoration:
+## Five directions to consider
 
-### A. OODA arc + active phase label (recommended primary)
-- Repaint the traveling arc and the *currently lit* phase label in copper.
-- Static ring stays neutral; dormant labels stay neutral.
-- Why: copper marks "what's happening right now inside the pod." The static structure (mesh, plates, ring) stays in teal/neutral; copper is reserved for the live cursor of attention. This is the cleanest semantic split — teal = network, copper = action.
+Ranked roughly by ambition. Pick one (or layered combinations).
 
-### B. Mesh peak highlight
-- When an edge or plate hits its peak (the brightest moment of the wave), tint it copper instead of brighter teal; it returns to teal at rest.
-- Why: makes the lateral mesh visibly "fire" rather than just brighten. Reads as energy moving through the network.
-- Risk: with 10 edges + 5 plates already pulsing, additional color shifts can feel busy on a small viewport. Mitigate by using copper only at the very peak (~8–12% of the cycle) and keeping the dormant/decay states teal.
+### 1. "Quotation of the river" (recommended — minimal, principled)
+Make the fragment a true compressed quote of the closing `RiverRule`: same three-flow asymmetry, same proportions, just shorter. Upper branch dominant and long, middle branch direct, lower branch peels off late and short. Same teal, same 0.9 stroke. Adds a tiny copper dot at the source point (left edge) as a "section pivot" marker — echoes the copper hero rule without competing.
 
-### C. Center dot / pod core
-- Add a small filled copper dot at the center of the OODA ring (with a soft glow) representing "the pod" — the thing the five disciplines constitute.
-- Why: gives the diagram a focal anchor and a single-glance read of "this is a pod."
-- Low-risk, additive, works alongside A or B.
+- Pros: cheapest change; ties divider to the page-close mark and the brand's copper signature; reinforces the river-as-propagation metaphor instead of being decoration.
+- Cons: subtle; the change reads as "more intentional" rather than dramatically different.
 
-### D. Eyebrow only (status quo)
-- Leave the SVG as-is. No change. Listed for completeness; doesn't address the request.
+### 2. Asymmetric counter-flow
+Keep two branches, but reverse one: upper flows left → right, lower flows right → left (drawn with a subtle taper so direction reads). Suggests two streams meeting at the section turn.
+
+- Pros: communicates "two threads of the argument converging here," which fits a section break.
+- Cons: requires gradient or taper to make direction legible, more SVG complexity.
+
+### 3. Centered confluence mark
+Two short curves that converge into a single point at the horizontal center, then diverge back out — visually a braided "knot" or pinch. Optional small copper diamond/dot at the pinch point.
+
+- Pros: most graphically distinctive; gives the divider a clear focal point.
+- Cons: more decorative; risks competing with the hero ridge.
+
+### 4. Single river line + copper tick
+One teal curve (the river), with a single short copper tick mark crossing it at the left third — like a survey mark on a map. Most editorial.
+
+- Pros: strong editorial restraint; very on-brand for a topographic identity system.
+- Cons: biggest visual departure; loses the "two-branch" quality that ties to RiverFragment's current role.
+
+### 5. Status quo + weight bump only
+Just bump stroke from 0.9 → 1.4 and lengthen one branch ~15% so the asymmetry reads. No copper, no shape change.
+
+- Pros: zero risk.
+- Cons: doesn't address the core "feels generic" problem.
 
 ## Recommendation
 
-**A + C together.** This gives copper a clear role (live action + pod core), preserves teal as the structural color (mesh + plates + dormant labels), and avoids the visual noise risk of B. If after seeing it you want more copper presence, add B as a follow-up.
+**Direction 1 ("quotation of the river") with a copper source dot.** It's the smallest change that actually fixes the underlying issues: it ties the divider to the page-closing river, introduces a controlled sliver of copper that connects to the hero ridge, and makes the asymmetry intentional. If after seeing it you want more presence, layer in Direction 2's counter-flow on top.
 
-## Technical plan (if A + C approved)
+If you want a bolder, more graphic divider (option 3 or 4), say which and I'll plan that instead.
 
-Edit only `src/components/PodMesh.tsx`.
+## Technical sketch (Direction 1)
 
-1. **Arc**: change the traveling-arc `<circle>` `stroke` from `var(--accent)` to `var(--copper-bright)`. Static ring stays `var(--border)`.
-2. **Active phase label**: in the `pod-label-pulse` keyframe, swap the `fill` peak from `var(--accent)` to `var(--copper-bright)`. Dormant state stays `var(--foreground)` at low opacity.
-3. **Pod core dot**: add a small `<circle>` at `(center.x, center.y)` with `r ≈ 6`, `fill="var(--copper-bright)"`, plus a faint outer `circle` (`r ≈ 14`, `fill="var(--copper)"`, low opacity) for a soft glow. Optional gentle 4–6s opacity breath on the glow ring; respects `prefers-reduced-motion`.
-4. **No changes** to mesh edges, discipline plates, eyebrow, copy, or layout.
+Edit only `src/components/RiverFragment.tsx`. No new tokens, no usage-site changes.
+
+1. Replace the two near-parallel paths with three paths derived from `RiverRule`'s geometry, scaled to the fragment's 200-wide viewBox:
+   - **Source stub** (`M 0 12 L 22 12`) — short entry on the left.
+   - **Upper branch** — long, wide arc from `(22,12)` drifting up to ~y=4 then settling at the right edge around y=5.
+   - **Lower branch** — peels off the source later (~x=80), short, drops to y=18.
+   - (Skip the middle branch — two visible branches keeps the fragment compact and readable at small size.)
+2. Add a small copper dot at the source point: `<circle cx={4} cy={12} r={1.6} fill="var(--copper-bright)" />`.
+3. Bump default `strokeWidth` from 0.9 → 1.1 for slightly more presence without losing the editorial feel.
+4. Keep all existing props (`width`, `height`, `stroke`, `strokeWidth`, `style`) and defaults so the four call sites in `the-doctrine.tsx` and `the-work.tsx` need no changes.
+5. `aria-hidden="true"` stays.
 
 ## Out of scope
 
-- Mesh edge/plate colors (kept teal to preserve the structure-vs-action split).
-- Ridge sparkles or other components.
-- New tokens — uses existing `--copper` / `--copper-bright` from `src/styles.css`.
+- `RiverRule` (closing mark on every page) and `RidgeRule` (hero mark) stay untouched.
+- No changes to spacing, alignment, or the routes that render the fragment.
+- No new color tokens.
