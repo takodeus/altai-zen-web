@@ -126,12 +126,12 @@ export function PodMesh() {
                 y1={vertices[a].y}
                 x2={vertices[b].x}
                 y2={vertices[b].y}
-                stroke="var(--accent)"
-                strokeWidth={1}
-                strokeDasharray="3 4"
+                stroke="var(--copper-bright)"
+                strokeWidth={2}
+                strokeDasharray="4 5"
                 fill="none"
                 style={{
-                  opacity: reduce ? 0.55 : 0.2,
+                  opacity: reduce ? 0.6 : 0.22,
                   animation: reduce
                     ? "none"
                     : `pod-edge-pulse ${meshDuration}s ease-in-out ${vertexDelays[a]}s infinite`,
@@ -143,12 +143,12 @@ export function PodMesh() {
                   y1={vertices[a].y}
                   x2={vertices[b].x}
                   y2={vertices[b].y}
-                  stroke="var(--accent)"
-                  strokeWidth={1}
-                  strokeDasharray="3 4"
+                  stroke="var(--copper-bright)"
+                  strokeWidth={2}
+                  strokeDasharray="4 5"
                   fill="none"
                   style={{
-                    opacity: 0.2,
+                    opacity: 0.22,
                     animation: `pod-edge-pulse ${meshDuration}s ease-in-out ${vertexDelays[b]}s infinite`,
                     mixBlendMode: "screen",
                   }}
@@ -183,26 +183,7 @@ export function PodMesh() {
             }}
           />
 
-          {/* Pod core: copper anchor at the center of the OODA ring */}
-          <circle
-            cx={center.x}
-            cy={center.y}
-            r={14}
-            fill="var(--copper)"
-            opacity={0.18}
-            style={{
-              animation: reduce
-                ? "none"
-                : "pod-core-breath 5s ease-in-out infinite",
-              transformOrigin: `${center.x}px ${center.y}px`,
-            }}
-          />
-          <circle
-            cx={center.x}
-            cy={center.y}
-            r={6}
-            fill="var(--copper-bright)"
-          />
+
 
           {/* Phase labels: dormant until arc arrives, then pulse to full accent */}
           <text
