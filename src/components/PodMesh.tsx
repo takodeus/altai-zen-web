@@ -183,26 +183,7 @@ export function PodMesh() {
             }}
           />
 
-          {/* Pod core: copper anchor at the center of the OODA ring */}
-          <circle
-            cx={center.x}
-            cy={center.y}
-            r={14}
-            fill="var(--copper)"
-            opacity={0.18}
-            style={{
-              animation: reduce
-                ? "none"
-                : "pod-core-breath 5s ease-in-out infinite",
-              transformOrigin: `${center.x}px ${center.y}px`,
-            }}
-          />
-          <circle
-            cx={center.x}
-            cy={center.y}
-            r={6}
-            fill="var(--copper-bright)"
-          />
+
 
           {/* Phase labels: dormant until arc arrives, then pulse to full accent */}
           <text
