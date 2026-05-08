@@ -213,37 +213,36 @@ export function TheDoctrinePage() {
           <h2 style={sectionTitleStyle}>The condition.</h2>
           <p style={bodyStyle}>The architecture was not wrong. The conditions changed.</p>
           <p style={bodyParaStyle}>
-            Coordination is now the institutional problem. Not capability,
-            not access, not speed. The systems are fast. The models are
+            Coordination is now the institutional problem. Not capability.
+            Not access. Not speed. The systems are fast. The models are
             capable. What no longer holds is the coherence between them.
           </p>
           <p style={bodyParaStyle}>
-            Three layers must exist where the interpreter used to stand.
+            Three layers must now exist where the interpreter used to stand.
           </p>
           <p style={bodyParaStyle}>
-            <span style={layerNameStyle}>Semantic governance.</span> A held
-            record of what the institution means by its own terms, propagated
-            across the systems that use them, versioned when meaning moves.
+            <span style={layerNameStyle}>Semantic governance.</span> The
+            institution{"'"}s meaning, held consistently enough for systems
+            to act on it.
           </p>
           <p style={bodyParaStyle}>
             <span style={layerNameStyle}>Interpretive authority.</span> A way
-            to preserve multiple legitimate views of the same thing, and
-            govern which one applies for a given purpose, at a given moment,
-            without pretending they were ever one.
+            to preserve multiple legitimate views of the same reality without
+            collapsing them into false consensus.
           </p>
           <p style={bodyParaStyle}>
-            <span style={layerNameStyle}>Decision lineage.</span> A traceable
+            <span style={layerNameStyle}>Decision lineage.</span> A retained
             record of judgment. Not the outcome. The reasoning the outcome
-            rested on, preserved in a form the firm can return to.
+            rested on, in a form the firm can return to.
           </p>
           <p style={bodyParaStyle}>
-            These are not features of any platform. They are the interpretive
-            layer the architecture quietly depended on, reconstituted on the
-            system because the interpreter is no longer there to hold it.
+            These are not features. They are the interpretive layer the
+            architecture quietly depended on, reconstituted on the system.
           </p>
           <p style={bodyParaStyle}>
-            Until they exist, the institution will produce output it cannot
-            act on, at increasing scale, against increasing pressure.
+            Until they exist, institutions will continue producing output
+            they cannot fully trust, at increasing scale, under increasing
+            pressure.
           </p>
         </section>
 
