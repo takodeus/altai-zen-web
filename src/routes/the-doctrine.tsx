@@ -27,15 +27,6 @@ const heroStyle: React.CSSProperties = {
   margin: 0,
 };
 
-const sectionNumStyle: React.CSSProperties = {
-  fontFamily: "var(--font-sans)",
-  fontSize: "11px",
-  letterSpacing: "0.18em",
-  textTransform: "uppercase",
-  color: "var(--muted-foreground)",
-  margin: "0 0 0.6em 0",
-};
-
 const sectionTitleStyle: React.CSSProperties = {
   fontFamily: "var(--font-serif)",
   fontWeight: 500,
@@ -150,9 +141,8 @@ export function TheDoctrinePage() {
           </p>
         </section>
 
-        {/* I. The arbitration. */}
+        {/* The arbitration. */}
         <section style={{ marginTop: "5em", maxWidth: "56ch" }}>
-          <p style={sectionNumStyle}>I.</p>
           <h2 style={sectionTitleStyle}>The arbitration.</h2>
           <p style={bodyStyle}>
             Institutional meaning is not monolithic. Risk under one definition
@@ -177,9 +167,8 @@ export function TheDoctrinePage() {
           <RiverFragment />
         </div>
 
-        {/* II. The substitution. */}
+        {/* The substitution. */}
         <section style={{ maxWidth: "56ch" }}>
-          <p style={sectionNumStyle}>II.</p>
           <h2 style={sectionTitleStyle}>The substitution.</h2>
           <p style={bodyStyle}>
             An agent inherits the data. It does not inherit the interpreter.
@@ -192,9 +181,8 @@ export function TheDoctrinePage() {
             unauditable.
           </p>
           <p style={bodyParaStyle}>
-            The reviewer has nothing to check it against. The record the
-            interpreter was checking against was never on the system in the
-            first place.
+            The reviewer has nothing to check it against. That record was
+            never on the system in the first place.
           </p>
           <p style={bodyParaStyle}>
             Pilots that do not fail technically stall here. Not because the
@@ -207,9 +195,8 @@ export function TheDoctrinePage() {
           <RiverFragment />
         </div>
 
-        {/* III. The condition. */}
+        {/* The condition. */}
         <section style={{ maxWidth: "56ch" }}>
-          <p style={sectionNumStyle}>III.</p>
           <h2 style={sectionTitleStyle}>The condition.</h2>
           <p style={bodyStyle}>The architecture was not wrong. The conditions changed.</p>
           <p style={bodyParaStyle}>
