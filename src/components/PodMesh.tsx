@@ -115,25 +115,46 @@ export function PodMesh() {
           aria-label="The Arban Pod: five disciplines forming a peer mesh, with an OODA loop running continuously inside."
           role="img"
         >
-          {/* Mesh: ten peer connections that light up as the wave reaches them */}
+          {/* Mesh: each edge fires from BOTH endpoints so when any vertex
+              lights up, all four of its incident edges illuminate with it,
+              visibly radiating the lateral peer mesh. Two stacked lines per
+              edge, each driven by one endpoint's delay. */}
           {edges.map(([a, b], k) => (
-            <line
-              key={`edge-${k}`}
-              x1={vertices[a].x}
-              y1={vertices[a].y}
-              x2={vertices[b].x}
-              y2={vertices[b].y}
-              stroke="var(--accent)"
-              strokeWidth={1}
-              strokeDasharray="3 4"
-              fill="none"
-              style={{
-                opacity: reduce ? 0.55 : 0.2,
-                animation: reduce
-                  ? "none"
-                  : `pod-edge-pulse ${meshDuration}s ease-in-out ${edgeDelaysList[k]}s infinite`,
-              }}
-            />
+            <g key={`edge-${k}`}>
+              <line
+                x1={vertices[a].x}
+                y1={vertices[a].y}
+                x2={vertices[b].x}
+                y2={vertices[b].y}
+                stroke="var(--accent)"
+                strokeWidth={1}
+                strokeDasharray="3 4"
+                fill="none"
+                style={{
+                  opacity: reduce ? 0.55 : 0.2,
+                  animation: reduce
+                    ? "none"
+                    : `pod-edge-pulse ${meshDuration}s ease-in-out ${vertexDelays[a]}s infinite`,
+                }}
+              />
+              {!reduce && (
+                <line
+                  x1={vertices[a].x}
+                  y1={vertices[a].y}
+                  x2={vertices[b].x}
+                  y2={vertices[b].y}
+                  stroke="var(--accent)"
+                  strokeWidth={1}
+                  strokeDasharray="3 4"
+                  fill="none"
+                  style={{
+                    opacity: 0.2,
+                    animation: `pod-edge-pulse ${meshDuration}s ease-in-out ${vertexDelays[b]}s infinite`,
+                    mixBlendMode: "screen",
+                  }}
+                />
+              )}
+            </g>
           ))}
 
           {/* OODA ring backdrop, base, traveling arc */}
