@@ -89,9 +89,9 @@ export function HomePage() {
               color: "#edeef0",
             }}
           >
-            The systems the firm runs on were built to record what is true
-            now. They do not preserve why anything was decided, under which
-            definitions, or what context governed the call.
+            Enterprise systems were built to record what is true now. They do
+            not preserve why anything was decided, under which definitions, or
+            what context governed the call.
           </p>
           <p
             className="t-body"
