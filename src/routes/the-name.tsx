@@ -80,11 +80,10 @@ export function TheNamePage() {
             generations later, in places that no longer remember where the water began.
           </p>
           <p className="font-serif" style={{ marginTop: "2em", marginBottom: 0 }}>
-            The Altai is also a homeland. The operating unit this firm is built
-            around was constituted there centuries ago: the Arban. Ten riders
-            carrying authority with them, acting on first contact, coordinating
-            across distance without waiting for instruction to travel back to
-            the center.
+            The Altai is also a homeland. Centuries ago, the operating unit
+            constituted there was the Arban: ten riders carrying authority
+            with them, acting on first contact, coordinating across distance
+            without waiting for permission to return from the center.
           </p>
         </section>
 
